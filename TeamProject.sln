@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamProject.Domain", "Src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamProject.Application", "Src\Core\Application\TeamProject.Application.csproj", "{67094EBD-59D3-4947-B139-B1992D81E3D4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamProject.Clients.WebApi", "Src\Clients\WebAPI\TeamProject.Clients.WebApi.csproj", "{640C8A9A-17AB-4335-9D2B-074753065A09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{67094EBD-59D3-4947-B139-B1992D81E3D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67094EBD-59D3-4947-B139-B1992D81E3D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67094EBD-59D3-4947-B139-B1992D81E3D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640C8A9A-17AB-4335-9D2B-074753065A09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640C8A9A-17AB-4335-9D2B-074753065A09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640C8A9A-17AB-4335-9D2B-074753065A09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640C8A9A-17AB-4335-9D2B-074753065A09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{A8157B94-B529-4A1D-981F-33F9CD39F127} = {38819C46-9B64-4FCC-9998-8B39ED902A5E}
 		{ED062972-D3B0-462F-A74D-30C1589BF735} = {AAADC146-2CA5-442C-ADF3-53CF8AA71561}
 		{67094EBD-59D3-4947-B139-B1992D81E3D4} = {AAADC146-2CA5-442C-ADF3-53CF8AA71561}
+		{640C8A9A-17AB-4335-9D2B-074753065A09} = {C4CD0C3D-EEC9-4C74-857F-DA4DFF4769B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1E1FFAD-74FE-4D1B-BA74-3373F90269DE}

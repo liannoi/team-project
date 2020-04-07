@@ -2,7 +2,7 @@
 
 namespace TeamProject.Persistence.Context
 {
-    public class IntervalsDbContextFactory : DesignTimeDbContextFactoryBase<FilmsDbContext>
+    public class FilmsDbContextFactory : DesignTimeDbContextFactoryBase<FilmsDbContext>
     {
         protected override FilmsDbContext CreateNewInstance(DbContextOptions<FilmsDbContext> options)
         {
