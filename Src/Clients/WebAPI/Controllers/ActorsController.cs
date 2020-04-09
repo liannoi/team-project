@@ -25,7 +25,7 @@ namespace TeamProject.Clients.WebApi.Controllers
         //[Route("api/get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public ActionResult<IList<ActorLookupDto>> GetAll()
+        public ActionResult<IEnumerable<ActorLookupDto>> GetAll()
         {
             var result = _repository.Select();
             return Ok(result);

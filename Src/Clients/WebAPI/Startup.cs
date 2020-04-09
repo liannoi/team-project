@@ -35,8 +35,6 @@ namespace TeamProject.Clients.WebApi
 
             services.AddHealthChecks().AddDbContextCheck<FilmsDbContext>();
 
-            services.AddHttpContextAccessor();
-
             services.AddControllers()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IFilmsDbContext>());
 
