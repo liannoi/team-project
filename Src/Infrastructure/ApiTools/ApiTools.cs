@@ -4,8 +4,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using TeamProject.Application.Common.Interfaces;
 
-namespace TeamProject.Clients.WebUI.Common.Helpers.ApiTools
+namespace TeamProject.Infrastructure.ApiTools
 {
     public class ApiTools : IApiTools
     {
