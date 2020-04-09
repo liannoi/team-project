@@ -21,12 +21,12 @@ namespace TeamProject.Application.Storage
             _mapper = mapper;
         }
 
-        public IList<TBEntity> Select()
+        public IEnumerable<TBEntity> Select()
         {
             return Map(_dataService.Select());
         }
 
-        public IList<TBEntity> Find(Expression<Func<TBEntity, bool>> expression)
+        public IEnumerable<TBEntity> Find(Expression<Func<TBEntity, bool>> expression)
         {
             return Map(_dataService.Find(Map(expression)));
         }
@@ -72,9 +72,9 @@ namespace TeamProject.Application.Storage
             return _mapper.Map<TBEntity>(entity);
         }
 
-        protected IList<TBEntity> Map(IQueryable<TEntity> queryable)
+        protected IEnumerable<TBEntity> Map(IQueryable<TEntity> queryable)
         {
-            return queryable.ProjectTo<TBEntity>(_mapper.ConfigurationProvider).ToList();
+            return queryable.ProjectTo<TBEntity>(_mapper.ConfigurationProvider);
         }
 
         #endregion
