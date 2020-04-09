@@ -11,13 +11,15 @@ namespace TeamProject.Application.Storage.Seeding
         private readonly IFilmsDbContext _context;
         private readonly IJsonMocksReader<Actor> _mockActors;
         private readonly IJsonMocksReader<Film> _mockFilms;
+        private readonly IJsonMocksReader<Genre> _mockGenres;
 
         public JsonMocksSeeder(IFilmsDbContext context, IJsonMocksReader<Film> mockFilms,
-            IJsonMocksReader<Actor> mockActors)
+            IJsonMocksReader<Actor> mockActors, IJsonMocksReader<Genre> mockGenres)
         {
             _context = context;
             _mockFilms = mockFilms;
             _mockActors = mockActors;
+            _mockGenres = mockGenres;
         }
 
         public async Task SeedAllAsync(CancellationToken cancellationToken)
@@ -34,6 +36,10 @@ namespace TeamProject.Application.Storage.Seeding
             if (!_context.Voting.Any())
                 await _context.Voting.AddAsync(
                     new Voting {Name = "The best movie in your opinion..."}, cancellationToken);
+
+            if (!_context.Genres.Any())
+                await _context.Genres.AddRangeAsync(
+                    await _mockGenres.ReadAsync(Consts.GenresMockPath, cancellationToken), cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
 

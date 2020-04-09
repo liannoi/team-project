@@ -6,6 +6,7 @@ namespace TeamProject.Application
     {
         public static string FilmsMockPath => SearchInBaseDirectory("mock-films.json");
         public static string ActorsMockPath => SearchInBaseDirectory("mock-actors.json");
+        public static string GenresMockPath => SearchInBaseDirectory("mock-genres.json");
 
         private static string SearchInBaseDirectory(string fileName)
         {
