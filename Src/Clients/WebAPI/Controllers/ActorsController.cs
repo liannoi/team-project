@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Application.Storage.Actors;
-using System.Linq;
-using System.Net.Http;
-using System.Net;
-using System;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
@@ -22,52 +19,56 @@ namespace TeamProject.Clients.WebApi.Controllers
         }
 
         [HttpGet]
-        //[Route("api/get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public ActionResult<IEnumerable<ActorLookupDto>> GetAll()
         {
-            var result = _repository.Select();
-            return Ok(result);
+            return Ok(_repository.Select());
         }
-        [HttpDelete("{id}")]        
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<ActorLookupDto>> Delete(int id)
         {
             try
             {
                 return Ok(await _repository.RemoveAsync(_repository.Find(e => e.ActorId == id).FirstOrDefault()));
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest("Unable to delete");
-            }
-        }
-        [HttpPost]
-        public async Task<ActionResult<ActorLookupDto>> Add([FromBody]ActorLookupDto obj)
-        {
-            try
-            {
-                ActorLookupDto @object = await _repository.AddAsync(obj);
-                return Ok(@object);                
-            }
-            catch(Exception e)
-            {
-                return BadRequest("Unable to add");
+                return BadRequest(e.Message);
             }
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult<ActorLookupDto>> Add([FromBody] ActorLookupDto obj)
+        {
+            try
+            {
+                return Ok(await _repository.AddAsync(obj));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<ActorLookupDto>> Update([FromBody] ActorLookupDto obj)
         {
             try
             {
                 return Ok(await _repository.UpdateAsync(e => e.ActorId == obj.ActorId, obj));
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest("Unable to update");
+                return BadRequest(e.Message);
             }
-        } 
-        
+        }
     }
 }

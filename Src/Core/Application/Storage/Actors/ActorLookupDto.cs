@@ -1,6 +1,5 @@
 ﻿using System;
 using AutoMapper;
-using FluentValidation;
 using TeamProject.Application.Common.Mappings;
 using TeamProject.Domain.Entities;
 

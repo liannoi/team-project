@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Clients.WebUI.Common.Models.Returnable;
 using TeamProject.Infrastructure.ApiTools;
@@ -13,6 +13,7 @@ namespace TeamProject.Clients.WebUI.Controllers
 
         public HomeController()
         {
+            // TODO: Invert control by injecting dependencies.
             _apiTools = new ApiTools();
         }
 

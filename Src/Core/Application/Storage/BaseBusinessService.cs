@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
@@ -23,16 +22,6 @@ namespace TeamProject.Application.Storage
             _mapper = mapper;
         }
 
-        public IEnumerable<TBEntity> Select()
-        {
-            return Map(_dataService.Select());
-        }
-
-        public IEnumerable<TBEntity> Find(Expression<Func<TBEntity, bool>> expression)
-        {
-            return Map(_dataService.Find(Map(expression)));
-        }
-
         public async Task<TBEntity> AddAsync(TBEntity entity)
         {
             return Map(await _dataService.AddAsync(Map(entity)));
@@ -45,14 +34,17 @@ namespace TeamProject.Application.Storage
 
         public async Task<TBEntity> RemoveAsync(TBEntity entity)
         {
-            try
-            {
-                return Map(await _dataService.RemoveAsync(Map(entity)));
-            }
-            catch
-            {
-                throw;
-            }                        
+            return Map(await _dataService.RemoveAsync(Map(entity)));
+        }
+
+        public IEnumerable<TBEntity> Select()
+        {
+            return Map(_dataService.Select());
+        }
+
+        public IEnumerable<TBEntity> Find(Expression<Func<TBEntity, bool>> expression)
+        {
+            return Map(_dataService.Find(Map(expression)));
         }
 
         #region Helpers
