@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using FluentValidation;
 using TeamProject.Application.Common.Mappings;
 using TeamProject.Domain.Entities;
 
@@ -19,6 +20,7 @@ namespace TeamProject.Application.Storage.Actors
                 .ForMember(d => d.FirstName, opt => opt.MapFrom(s => s.FirstName))
                 .ForMember(d => d.LastName, opt => opt.MapFrom(s => s.LastName))
                 .ForMember(d => d.Birthday, opt => opt.MapFrom(s => s.Birthday));
+            profile.CreateMap<ActorLookupDto, Actor>();
         }
     }
 }

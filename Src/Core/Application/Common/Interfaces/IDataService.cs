@@ -10,9 +10,8 @@ namespace TeamProject.Application.Common.Interfaces
     {
         IQueryable<TEntity> Select();
         IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> expression);
-        TEntity Add(TEntity entity);
-        TEntity Update(Expression<Func<TEntity, bool>> expressionToFindOld, TEntity entity);
-        TEntity Remove(TEntity entity);
-        Task<int> CommitAsync(CancellationToken cancellationToken);
+        Task<TEntity> AddAsync(TEntity entity);
+        Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> expressionToFindOld, TEntity entity);
+        Task<TEntity> RemoveAsync(TEntity entity);
     }
 }
