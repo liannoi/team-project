@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace TeamProject.Clients.WebUI.Common.Helpers.ApiTools
+namespace TeamProject.Application.Common.Interfaces
 {
     public interface IApiTools
     {
