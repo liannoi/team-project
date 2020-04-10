@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Clients.Common.Tools;
 using TeamProject.Clients.WebUI.Common.Models.Returnable;
-using TeamProject.Infrastructure.ApiTools;
 
 namespace TeamProject.Clients.WebUI.Controllers
 {
@@ -11,10 +10,9 @@ namespace TeamProject.Clients.WebUI.Controllers
     {
         private readonly IApiTools _apiTools;
 
-        public HomeController()
+        public HomeController(IApiTools apiTools)
         {
-            // TODO: Invert control by injecting dependencies.
-            _apiTools = new ApiTools();
+            _apiTools = apiTools;
         }
 
         public IActionResult Index()
