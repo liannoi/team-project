@@ -20,7 +20,6 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
         public ActionResult<IEnumerable<ActorLookupDto>> GetAll()
         {
             return Ok(_repository.Select());
@@ -28,13 +27,14 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ActorLookupDto>> Delete(int id)
         {
             try
             {
                 return Ok(await _repository.RemoveAsync(_repository.Find(e => e.ActorId == id).FirstOrDefault()));
             }
+            // TODO: Specify more specific exceptions.
             catch (Exception e)
             {
                 return BadRequest(e.Message);
@@ -43,13 +43,14 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ActorLookupDto>> Add([FromBody] ActorLookupDto obj)
         {
             try
             {
                 return Ok(await _repository.AddAsync(obj));
             }
+            // TODO: Specify more specific exceptions.
             catch (Exception e)
             {
                 return BadRequest(e.Message);
@@ -58,13 +59,14 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ActorLookupDto>> Update([FromBody] ActorLookupDto obj)
         {
             try
             {
                 return Ok(await _repository.UpdateAsync(e => e.ActorId == obj.ActorId, obj));
             }
+            // TODO: Specify more specific exceptions.
             catch (Exception e)
             {
                 return BadRequest(e.Message);

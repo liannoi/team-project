@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Domain.Entities;
-using System.Linq;
-using System.Threading;
 
 namespace TeamProject.Application.Storage.Genres
 {
-    public class GenreService:BaseDataService<Genre>
+    public class GenreService : BaseDataService<Genre>
     {
-        public GenreService(IFilmsDbContext context):base(context, context.Genres)
+        public GenreService(IFilmsDbContext context) : base(context, context.Genres)
         {
-
         }
 
         public override async Task<Genre> UpdateAsync(Expression<Func<Genre, bool>> expressionToFindOld, Genre entity)

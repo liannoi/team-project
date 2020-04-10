@@ -5,69 +5,82 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces;
-using TeamProject.Application.Storage.Genere;
+using TeamProject.Application.Storage.Genres;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
-    //[Route("api/[controller]")]
-    [ApiController]
     public class GenreController : BaseController
     {
-        private readonly IBusinessService<GenreDTO> _repository;
-        public GenreController(IBusinessService<GenreDTO> repository)
+        private readonly IBusinessService<GenreLookupDto> _repository;
+
+        public GenreController(IBusinessService<GenreLookupDto> repository)
         {
             _repository = repository;
         }
+
         [HttpGet]
-        public ActionResult<IEnumerable<GenreDTO>> GetAll()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<IEnumerable<GenreLookupDto>> GetAll()
         {
             return Ok(_repository.Select());
         }
+
         [HttpGet("{Id}")]
-        public ActionResult<GenreDTO> GetInstance(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<GenreLookupDto> Get(int id)
         {
-            var obj = _repository.Find(e => e.GenreId == id).FirstOrDefault();
-            if (obj != null)
-            {
-                return Ok(obj);
-            }
+            var result = _repository.Find(e => e.GenreId == id).FirstOrDefault();
+            if (result != null) return Ok(result);
+
             return BadRequest("Not found");
         }
+
         [HttpPost]
-        public async Task<ActionResult<GenreDTO>> Add([FromBody]GenreDTO obj)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<GenreLookupDto>> Add([FromBody] GenreLookupDto genre)
         {
             try
             {
-                var returnObj = await _repository.AddAsync(obj);
-                return Ok(returnObj);
+                return Ok(await _repository.AddAsync(genre));
             }
-            catch
+            // TODO: Specify more specific exceptions.
+            catch (Exception e)
             {
-                return BadRequest("Unable to add");
+                return BadRequest(e.Message);
             }
         }
+
         [HttpDelete("{id}")]
-        public async Task<ActionResult<GenreDTO>> Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<GenreLookupDto>> Delete(int id)
         {
             try
             {
                 return Ok(await _repository.RemoveAsync(_repository.Find(e => e.GenreId == id).FirstOrDefault()));
             }
-            catch
+            // TODO: Specify more specific exceptions.
+            catch (Exception e)
             {
-                return BadRequest("Unable to delete");
+                return BadRequest(e.Message);
             }
         }
+
         [HttpPost]
-        public async Task<ActionResult<GenreDTO>> Update([FromBody]GenreDTO obj)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<GenreLookupDto>> Update([FromBody] GenreLookupDto genre)
         {
             try
             {
-                return Ok(await _repository.UpdateAsync(e => e.GenreId == obj.GenreId, obj));
+                return Ok(await _repository.UpdateAsync(e => e.GenreId == genre.GenreId, genre));
             }
-            catch
+            // TODO: Specify more specific exceptions.
+            catch (Exception e)
             {
-                return BadRequest("Unable to update");
+                return BadRequest(e.Message);
             }
         }
     }
