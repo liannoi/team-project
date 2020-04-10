@@ -7,7 +7,7 @@ namespace TeamProject.Application.Storage.Actors
     /// <summary>
     ///     Actor Business Service (DTO Type).
     /// </summary>
-    public class ActorRepository : BaseBusinessService<Actor,ActorLookupDto>
+    public class ActorRepository : BaseBusinessService<Actor, ActorLookupDto>
     {
         public ActorRepository(IDataService<Actor> dataService, IMapper mapper) : base(dataService, mapper)
         {

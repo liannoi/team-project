@@ -5,34 +5,61 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces;
-using TeamProject.Application.Storage.Actors;
+using TeamProject.Application.Storage.Genres;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
-    public class ActorsController : BaseController
+    public class GenreController : BaseController
     {
-        private readonly IBusinessService<ActorLookupDto> _repository;
+        private readonly IBusinessService<GenreLookupDto> _repository;
 
-        public ActorsController(IBusinessService<ActorLookupDto> repository)
+        public GenreController(IBusinessService<GenreLookupDto> repository)
         {
             _repository = repository;
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<ActorLookupDto>> GetAll()
+        public ActionResult<IEnumerable<GenreLookupDto>> GetAll()
         {
             return Ok(_repository.Select());
+        }
+
+        [HttpGet("{Id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<GenreLookupDto> Get(int id)
+        {
+            var result = _repository.Find(e => e.GenreId == id).FirstOrDefault();
+            if (result != null) return Ok(result);
+
+            return BadRequest("Not found");
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<GenreLookupDto>> Add([FromBody] GenreLookupDto genre)
+        {
+            try
+            {
+                return Ok(await _repository.AddAsync(genre));
+            }
+            // TODO: Specify more specific exceptions.
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ActorLookupDto>> Delete(int id)
+        public async Task<ActionResult<GenreLookupDto>> Delete(int id)
         {
             try
             {
-                return Ok(await _repository.RemoveAsync(_repository.Find(e => e.ActorId == id).FirstOrDefault()));
+                return Ok(await _repository.RemoveAsync(_repository.Find(e => e.GenreId == id).FirstOrDefault()));
             }
             // TODO: Specify more specific exceptions.
             catch (Exception e)
@@ -44,27 +71,11 @@ namespace TeamProject.Clients.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ActorLookupDto>> Add([FromBody] ActorLookupDto obj)
+        public async Task<ActionResult<GenreLookupDto>> Update([FromBody] GenreLookupDto genre)
         {
             try
             {
-                return Ok(await _repository.AddAsync(obj));
-            }
-            // TODO: Specify more specific exceptions.
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ActorLookupDto>> Update([FromBody] ActorLookupDto obj)
-        {
-            try
-            {
-                return Ok(await _repository.UpdateAsync(e => e.ActorId == obj.ActorId, obj));
+                return Ok(await _repository.UpdateAsync(e => e.GenreId == genre.GenreId, genre));
             }
             // TODO: Specify more specific exceptions.
             catch (Exception e)
