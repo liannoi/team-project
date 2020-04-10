@@ -13,30 +13,78 @@ namespace TeamProject.Infrastructure.Services.Identity
     public class IdentityService : IIdentityService
     {
         private readonly IdentitySettings _identitySettings;
+        private Claim[] _claims;
+        private SigningCredentials _credentials;
+        private DateTime? _expires;
+        private string _issuer;
+        private SecurityKey _securityKey;
 
         public IdentityService(IOptions<IdentitySettings> identitySettings)
         {
             _identitySettings = identitySettings.Value;
         }
 
+        public IIdentityService Key(SecurityKey key)
+        {
+            _securityKey = key;
+
+            return this;
+        }
+
+        public IIdentityService Credentials(SigningCredentials credentials)
+        {
+            _credentials = credentials;
+
+            return this;
+        }
+
         public string CreateJsonWebToken(AppUser user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_identitySettings.Secret));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            return new JwtSecurityTokenHandler().WriteToken(PrepareJsonWebToken(user));
+        }
 
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+        public IIdentityService Expires(DateTime expires)
+        {
+            _expires = expires;
 
-            var token = new JwtSecurityToken(_identitySettings.Issuer, _identitySettings.Issuer, claims,
-                expires: DateTime.Now.AddMinutes(120), signingCredentials: credentials);
+            return this;
+        }
 
-            var encodeToken = new JwtSecurityTokenHandler().WriteToken(token);
+        public IIdentityService Claims(params Claim[] claim)
+        {
+            _claims = claim;
 
-            return encodeToken;
+            return this;
+        }
+
+        public IIdentityService Issuer(string issuer)
+        {
+            _issuer = issuer;
+
+            return this;
+        }
+
+        private JwtSecurityToken PrepareJsonWebToken(AppUser user)
+        {
+            if (_securityKey == null)
+                _securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_identitySettings.Secret));
+
+            if (_credentials == null)
+                _credentials = new SigningCredentials(_securityKey, SecurityAlgorithms.HmacSha256);
+
+            if (_claims == null)
+                _claims = new[]
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
+
+            if (_expires == null) _expires = DateTime.Now.AddMinutes(15);
+
+            if (_issuer == null) _issuer = _identitySettings.Issuer;
+
+            return new JwtSecurityToken(_issuer, _issuer, _claims, expires: _expires, signingCredentials: _credentials);
         }
     }
 }

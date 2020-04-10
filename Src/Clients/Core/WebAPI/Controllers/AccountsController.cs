@@ -1,6 +1,4 @@
-﻿#define Debug
-
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -15,8 +13,8 @@ namespace TeamProject.Clients.WebApi.Controllers
 {
     public class AccountsController : BaseController
     {
-        private readonly UserManager<AppUser> _userManager;
         private readonly IIdentityService _identityService;
+        private readonly UserManager<AppUser> _userManager;
 
         public AccountsController(UserManager<AppUser> userManager, IIdentityService identityService)
         {
@@ -37,6 +35,7 @@ namespace TeamProject.Clients.WebApi.Controllers
             if (result.Succeeded) return Ok(_identityService.CreateJsonWebToken(user));
 
             AddErrors(result);
+
             return BadRequest(ModelState);
         }
 
