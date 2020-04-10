@@ -152,7 +152,7 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
                 b.ToTable("AspNetUserTokens");
             });
 
-            modelBuilder.Entity("TeamProject.Persistence.Identity.AppUser", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Identity.AppUser", b =>
             {
                 b.Property<string>("Id")
                     .HasColumnType("nvarchar(450)");
@@ -217,42 +217,6 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
                 b.ToTable("AspNetUsers");
             });
 
-            modelBuilder.Entity("TeamProject.Persistence.Identity.Roles.Administrator", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
-                        SqlServerValueGenerationStrategy.IdentityColumn);
-
-                b.Property<string>("IdentityId")
-                    .HasColumnType("nvarchar(450)");
-
-                b.HasKey("Id");
-
-                b.HasIndex("IdentityId");
-
-                b.ToTable("Administrators");
-            });
-
-            modelBuilder.Entity("TeamProject.Persistence.Identity.Roles.User", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
-                        SqlServerValueGenerationStrategy.IdentityColumn);
-
-                b.Property<string>("IdentityId")
-                    .HasColumnType("nvarchar(450)");
-
-                b.HasKey("Id");
-
-                b.HasIndex("IdentityId");
-
-                b.ToTable("Users");
-            });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
             {
                 b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -264,7 +228,7 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
             {
-                b.HasOne("TeamProject.Persistence.Identity.AppUser", null)
+                b.HasOne("TeamProject.Domain.Entities.Identity.AppUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -273,7 +237,7 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
             {
-                b.HasOne("TeamProject.Persistence.Identity.AppUser", null)
+                b.HasOne("TeamProject.Domain.Entities.Identity.AppUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -288,7 +252,7 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
-                b.HasOne("TeamProject.Persistence.Identity.AppUser", null)
+                b.HasOne("TeamProject.Domain.Entities.Identity.AppUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -297,25 +261,11 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
             {
-                b.HasOne("TeamProject.Persistence.Identity.AppUser", null)
+                b.HasOne("TeamProject.Domain.Entities.Identity.AppUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
-            });
-
-            modelBuilder.Entity("TeamProject.Persistence.Identity.Roles.Administrator", b =>
-            {
-                b.HasOne("TeamProject.Persistence.Identity.AppUser", "Identity")
-                    .WithMany()
-                    .HasForeignKey("IdentityId");
-            });
-
-            modelBuilder.Entity("TeamProject.Persistence.Identity.Roles.User", b =>
-            {
-                b.HasOne("TeamProject.Persistence.Identity.AppUser", "Identity")
-                    .WithMany()
-                    .HasForeignKey("IdentityId");
             });
 #pragma warning restore 612, 618
         }

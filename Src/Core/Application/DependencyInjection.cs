@@ -6,7 +6,6 @@ using TeamProject.Application.Common.Behaviour;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Application.Storage.Actors;
 using TeamProject.Domain.Entities.Actor;
-using TeamProject.Domain.Entities.Identity.Roles;
 
 namespace TeamProject.Application
 {
@@ -20,9 +19,6 @@ namespace TeamProject.Application
 
             self.AddTransient<IDataService<Actor>, ActorService>();
             self.AddTransient<IBusinessService<ActorLookupDto>, ActorRepository>();
-
-            self.AddTransient<IDataService<Administrator>, AdministratorService>();
-            self.AddTransient<IBusinessService<AdministratorLookupDto>, AdministratorRepository>();
 
             return self;
         }

@@ -20,7 +20,6 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
         public ActionResult<IEnumerable<ActorLookupDto>> GetAll()
         {
             return Ok(_repository.Select());
@@ -28,7 +27,6 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
         public async Task<ActionResult<ActorLookupDto>> Delete(int id)
         {
             try
@@ -43,7 +41,6 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
         public async Task<ActionResult<ActorLookupDto>> Add([FromBody] ActorLookupDto obj)
         {
             try
@@ -58,7 +55,6 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesDefaultResponseType]
         public async Task<ActionResult<ActorLookupDto>> Update([FromBody] ActorLookupDto obj)
         {
             try

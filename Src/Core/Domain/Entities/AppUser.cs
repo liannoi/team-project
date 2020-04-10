@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace TeamProject.Domain.Entities.Identity
+namespace TeamProject.Domain.Entities
 {
     public class AppUser : IdentityUser
     {

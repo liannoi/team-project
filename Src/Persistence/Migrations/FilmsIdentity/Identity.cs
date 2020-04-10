@@ -62,25 +62,6 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
                 });
 
             migrationBuilder.CreateTable(
-                "Administrators",
-                table => new
-                {
-                    Id = table.Column<int>()
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdentityId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Administrators", x => x.Id);
-                    table.ForeignKey(
-                        "FK_Administrators_AspNetUsers_IdentityId",
-                        x => x.IdentityId,
-                        "AspNetUsers",
-                        "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 "AspNetUserClaims",
                 table => new
                 {
@@ -165,30 +146,6 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                "Users",
-                table => new
-                {
-                    Id = table.Column<int>()
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdentityId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        "FK_Users_AspNetUsers_IdentityId",
-                        x => x.IdentityId,
-                        "AspNetUsers",
-                        "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                "IX_Administrators_IdentityId",
-                "Administrators",
-                "IdentityId");
-
             migrationBuilder.CreateIndex(
                 "IX_AspNetRoleClaims_RoleId",
                 "AspNetRoleClaims",
@@ -227,18 +184,10 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
                 "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                "IX_Users_IdentityId",
-                "Users",
-                "IdentityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                "Administrators");
-
             migrationBuilder.DropTable(
                 "AspNetRoleClaims");
 
@@ -253,9 +202,6 @@ namespace TeamProject.Persistence.Migrations.FilmsIdentity
 
             migrationBuilder.DropTable(
                 "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                "Users");
 
             migrationBuilder.DropTable(
                 "AspNetRoles");
