@@ -12,7 +12,7 @@ namespace TeamProject.Application
         {
             var split = Path.DirectorySeparatorChar;
             var up = $"{split}..";
-            return $"{Directory.GetCurrentDirectory()}{up}{up}{up}{split}mocks{split}seeding{split}{fileName}";
+            return $"{Directory.GetCurrentDirectory()}{up}{up}{up}{up}{split}mocks{split}seeding{split}{fileName}";
         }
     }
 }
