@@ -17,8 +17,8 @@ namespace TeamProject.Application
             self.AddMediatR(Assembly.GetExecutingAssembly());
             self.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-            self.AddScoped<IDataService<Actor>, ActorService>();
-            self.AddScoped<IBusinessService<ActorLookupDto>, ActorRepository>();
+            self.AddTransient<IDataService<Actor>, ActorService>();
+            self.AddTransient<IBusinessService<ActorLookupDto>, ActorRepository>();
 
             return self;
         }

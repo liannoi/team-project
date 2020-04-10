@@ -29,19 +29,23 @@ namespace TeamProject.Application.Storage
             return Entities.Where(expression);
         }
 
-        public TEntity Add(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            return Entities.Add(entity).Entity;
+            Entities.Add(entity);
+            await CommitAsync(CancellationToken.None);
+            return entity;
         }
 
-        public abstract TEntity Update(Expression<Func<TEntity, bool>> expressionToFindOld, TEntity entity);
+        public abstract Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> expressionToFindOld, TEntity entity);
 
-        public TEntity Remove(TEntity entity)
+        public async Task<TEntity> RemoveAsync(TEntity entity)
         {
-            return Entities.Remove(entity).Entity;
+            Entities.Remove(entity);
+            await CommitAsync(CancellationToken.None);
+            return entity;
         }
 
-        public async Task<int> CommitAsync(CancellationToken cancellationToken)
+        protected async Task<int> CommitAsync(CancellationToken cancellationToken)
         {
             return await _context.SaveChangesAsync(cancellationToken);
         }
