@@ -27,8 +27,7 @@ namespace TeamProject.Clients.WebApi.Controllers
         [ProducesDefaultResponseType]
         public ActionResult<IEnumerable<ActorLookupDto>> GetAll()
         {
-            var result = _repository.Select();
-            return Ok(result);
+            return Ok(_repository.Select());
         }
         [HttpDelete("{id}")]        
         public async Task<ActionResult<ActorLookupDto>> Delete(int id)

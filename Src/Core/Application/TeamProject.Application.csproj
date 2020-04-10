@@ -20,7 +20,6 @@
     <Folder Include="Storage\ActorsPhotos\" />
     <Folder Include="Storage\FilmsPhotos\" />
     <Folder Include="Storage\Films\" />
-    <Folder Include="Storage\Genres\" />
     <Folder Include="Storage\Seeding\" />
     <Folder Include="Storage\VotingPolles\" />
     <Folder Include="Storage\Voting\" />

@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using TeamProject.Application.Common.Behaviour;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Application.Storage.Actors;
+using TeamProject.Application.Storage.Genere;
+using TeamProject.Application.Storage.Genres;
 using TeamProject.Domain.Entities;
 
 namespace TeamProject.Application
@@ -17,8 +19,10 @@ namespace TeamProject.Application
             self.AddMediatR(Assembly.GetExecutingAssembly());
             self.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-            self.AddTransient<IDataService<Actor>, ActorService>();
+            self.AddTransient<IDataService<Actor>, ActorService>();            
             self.AddTransient<IBusinessService<ActorLookupDto>, ActorRepository>();
+            self.AddTransient<IDataService<Genre>, GenreService>();
+            self.AddTransient<IBusinessService<GenreDTO>, GenreRepository>();
 
             return self;
         }
