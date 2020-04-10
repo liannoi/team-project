@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Persistence.Configurations
 {

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using TeamProject.Domain.Entities.ManyToMany;
 
-namespace TeamProject.Domain.Entities
+namespace TeamProject.Domain.Entities.Actor
 {
     public class Actor
     {

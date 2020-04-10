@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using TeamProject.Application.Common.Interfaces;
-using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Application.Storage.Actors
 {

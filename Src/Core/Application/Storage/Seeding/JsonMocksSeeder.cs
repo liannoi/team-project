@@ -3,6 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
+using TeamProject.Domain.Entities.Film;
+using TeamProject.Domain.Entities.Voting;
 
 namespace TeamProject.Application.Storage.Seeding
 {

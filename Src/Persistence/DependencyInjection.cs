@@ -15,6 +15,11 @@ namespace TeamProject.Persistence
 
             self.AddScoped<IFilmsDbContext>(provider => provider.GetService<FilmsDbContext>());
 
+            self.AddDbContext<FilmsIdentityContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString(Consts.IdentityDatabaseNameInConnectionString)));
+
+            self.AddScoped<IFilmsIdentityContext>(provider => provider.GetService<FilmsIdentityContext>());
+
             return self;
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using TeamProject.Application.Common.Mappings;
-using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Application.Storage.Actors
 {
