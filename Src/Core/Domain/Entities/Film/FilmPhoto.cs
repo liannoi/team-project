@@ -1,4 +1,4 @@
-﻿namespace TeamProject.Domain.Entities
+﻿namespace TeamProject.Domain.Entities.Film
 {
     public class FilmPhoto
     {

@@ -1,4 +1,6 @@
-﻿namespace TeamProject.Domain.Entities
+﻿using TeamProject.Domain.Entities.Voting;
+
+namespace TeamProject.Domain.Entities.ManyToMany
 {
     public class VotingPolleRelation
     {
@@ -8,7 +10,7 @@
         public int VotingAnswerId { get; set; }
 
         public VotingPolle Polle { get; set; }
-        public Voting Voting { get; set; }
+        public Voting.Voting Voting { get; set; }
         public VotingAnswer VotingAnswer { get; set; }
     }
 }

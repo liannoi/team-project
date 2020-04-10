@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Infrastructure.MockReaders
 {

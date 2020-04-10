@@ -1,12 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
+using TeamProject.Domain.Entities.Film;
+using TeamProject.Domain.Entities.ManyToMany;
+using TeamProject.Domain.Entities.Voting;
 
 namespace TeamProject.Persistence.Context
 {
     public class FilmsDbContext : DbContext, IFilmsDbContext
     {
-        public FilmsDbContext(DbContextOptions options) : base(options)
+        public FilmsDbContext(DbContextOptions<FilmsDbContext> options) : base(options)
         {
         }
 

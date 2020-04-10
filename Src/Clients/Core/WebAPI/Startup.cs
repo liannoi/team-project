@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TeamProject.Application;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Clients.WebApi.Controllers;
 using TeamProject.Infrastructure;
 using TeamProject.Persistence;
 using TeamProject.Persistence.Context;
@@ -38,7 +38,7 @@ namespace TeamProject.Clients.WebApi
             services.AddHealthChecks().AddDbContextCheck<FilmsDbContext>();
 
             services.AddControllers()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IFilmsDbContext>());
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BaseController>());
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
         }
@@ -56,6 +56,9 @@ namespace TeamProject.Clients.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             // TODO: CORS.
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TeamProject.Clients.WebUI.Common.Models.Returnable
+namespace TeamProject.Clients.Common.Models.Returnable
 {
     public class ActorReturnModel
     {

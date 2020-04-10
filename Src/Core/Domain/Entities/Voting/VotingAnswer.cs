@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using TeamProject.Domain.Entities.ManyToMany;
 
-namespace TeamProject.Domain.Entities
+namespace TeamProject.Domain.Entities.Voting
 {
     public class VotingAnswer
     {

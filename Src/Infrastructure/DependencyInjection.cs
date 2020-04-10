@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
+using TeamProject.Domain.Entities.Film;
 using TeamProject.Infrastructure.MockReaders;
 
 namespace TeamProject.Infrastructure

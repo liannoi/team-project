@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using MediatR;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
+using TeamProject.Domain.Entities.Film;
 
 namespace TeamProject.Application.Storage.Seeding
 {

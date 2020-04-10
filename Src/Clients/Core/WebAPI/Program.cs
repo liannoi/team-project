@@ -26,6 +26,7 @@ namespace TeamProject.Clients.WebApi
                 try
                 {
                     services.GetRequiredService<FilmsDbContext>().Database.Migrate();
+                    services.GetRequiredService<FilmsIdentityContext>().Database.Migrate();
                     await services.GetRequiredService<IMediator>().Send(new SeedingCommand(), CancellationToken.None);
                 }
                 catch (Exception ex)

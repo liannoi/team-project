@@ -2,6 +2,10 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
+using TeamProject.Domain.Entities.Film;
+using TeamProject.Domain.Entities.ManyToMany;
+using TeamProject.Domain.Entities.Voting;
 
 namespace TeamProject.Application.Common.Interfaces
 {
