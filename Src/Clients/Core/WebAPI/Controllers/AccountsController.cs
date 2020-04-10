@@ -9,13 +9,11 @@ namespace TeamProject.Clients.WebApi.Controllers
 {
     public class AccountsController : BaseController
     {
-        private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
 
-        public AccountsController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountsController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         [HttpPost]
