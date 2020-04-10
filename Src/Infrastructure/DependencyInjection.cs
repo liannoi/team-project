@@ -12,6 +12,7 @@ namespace TeamProject.Infrastructure
         {
             self.AddTransient<IJsonMocksReader<Film>, JsonFilmsMockReader>();
             self.AddTransient<IJsonMocksReader<Actor>, JsonActorsMockReader>();
+            self.AddTransient<IJsonMocksReader<Genre>, JsonGenresMockReader>();
 
             return self;
         }

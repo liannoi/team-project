@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TeamProject.Application.Common.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using TeamProject.Clients.Common.Tools;
 using TeamProject.Clients.WebUI.Common.Models.Returnable;
-using TeamProject.Infrastructure.ApiTools;
 
 namespace TeamProject.Clients.WebUI.Controllers
 {
@@ -11,9 +10,9 @@ namespace TeamProject.Clients.WebUI.Controllers
     {
         private readonly IApiTools _apiTools;
 
-        public HomeController()
+        public HomeController(IApiTools apiTools)
         {
-            _apiTools = new ApiTools();
+            _apiTools = apiTools;
         }
 
         public IActionResult Index()

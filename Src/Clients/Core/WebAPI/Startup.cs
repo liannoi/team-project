@@ -33,6 +33,8 @@ namespace TeamProject.Clients.WebApi
             services.AddPersistence(Configuration);
             services.AddApplication();
 
+            services.AddHttpContextAccessor();
+
             services.AddHealthChecks().AddDbContextCheck<FilmsDbContext>();
 
             services.AddControllers()
