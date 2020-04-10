@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +32,23 @@ namespace TeamProject.Clients.WebApi.Controllers
             if (result.Succeeded) return Ok(_identityService.CreateJsonWebToken(user));
 
             AddErrors(result);
+
+            return BadRequest(ModelState);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Login([FromBody] LoginViewModel loginModel)
+        {
+            if (!ModelState.IsValid) return BadRequest(new LoginViewModelValidator().Validate(loginModel).Errors);
+
+            var user = await _userManager.FindByEmailAsync(loginModel.Email);
+
+            if (await _userManager.CheckPasswordAsync(user, loginModel.Password))
+                return Ok(_identityService.CreateJsonWebToken(user));
+
+            ModelState.AddModelError("", "Invalid username or password");
 
             return BadRequest(ModelState);
         }
