@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TeamProject.Domain.Entities;
 
-namespace TeamProject.Infrastructure.MockReaders
+namespace TeamProject.Infrastructure.Readers.Mock
 {
     public class JsonGenresMockReader : JsonMockReader<Genre>
     {

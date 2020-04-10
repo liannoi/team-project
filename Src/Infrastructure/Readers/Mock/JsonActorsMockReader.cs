@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TeamProject.Domain.Entities.Actor;
 
-namespace TeamProject.Infrastructure.MockReaders
+namespace TeamProject.Infrastructure.Readers.Mock
 {
     public class JsonActorsMockReader : JsonMockReader<Actor>
     {

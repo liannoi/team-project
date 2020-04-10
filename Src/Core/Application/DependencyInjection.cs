@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using TeamProject.Application.Common.Behaviour;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Application.Storage.Actors;
-using TeamProject.Domain.Entities.Actor;
 using TeamProject.Application.Storage.Genres;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Application
 {

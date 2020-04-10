@@ -3,7 +3,8 @@ using TeamProject.Application.Common.Interfaces;
 using TeamProject.Domain.Entities;
 using TeamProject.Domain.Entities.Actor;
 using TeamProject.Domain.Entities.Film;
-using TeamProject.Infrastructure.MockReaders;
+using TeamProject.Infrastructure.Readers.Mock;
+using TeamProject.Infrastructure.Services.Identity;
 
 namespace TeamProject.Infrastructure
 {
@@ -15,6 +16,8 @@ namespace TeamProject.Infrastructure
             self.AddTransient<IJsonMocksReader<Film>, JsonFilmsMockReader>();
             self.AddTransient<IJsonMocksReader<Actor>, JsonActorsMockReader>();
             self.AddTransient<IJsonMocksReader<Genre>, JsonGenresMockReader>();
+
+            self.AddTransient<IIdentityService, IdentityService>();
 
             return self;
         }

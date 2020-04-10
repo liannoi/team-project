@@ -41,6 +41,8 @@ namespace TeamProject.Clients.WebApi
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BaseController>());
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+
+            services.AddJwtAuthentication(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
