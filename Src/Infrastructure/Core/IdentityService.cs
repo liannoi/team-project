@@ -8,7 +8,7 @@ using TeamProject.Application;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Domain.Entities;
 
-namespace TeamProject.Infrastructure.Services.Identity
+namespace TeamProject.Infrastructure.Core
 {
     public class IdentityService : IIdentityService
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TeamProject.Application.Common.Interfaces;
 
-namespace TeamProject.Infrastructure.Readers.Mock
+namespace TeamProject.Infrastructure.Core
 {
     public abstract class JsonMockReader<TEntity> : IJsonMocksReader<TEntity> where TEntity : class, new()
     {

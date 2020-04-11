@@ -8,6 +8,8 @@ namespace TeamProject.Application
         public static string ActorsMockPath => SearchInBaseDirectory("mock-actors.json");
         public static string GenresMockPath => SearchInBaseDirectory("mock-genres.json");
 
+        public static string JwtSectionName => "JsonWebToken";
+
         private static string SearchInBaseDirectory(string fileName)
         {
             var split = Path.DirectorySeparatorChar;
