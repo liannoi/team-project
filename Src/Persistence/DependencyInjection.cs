@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,8 @@ namespace TeamProject.Persistence
             self.AddDbContext<FilmsIdentityContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString(PersistenceDefaults.IdentityDatabaseNameInConnectionString)));
+
+            self.AddScoped<IdentityDbContext<AppUser>>(provider => provider.GetService<FilmsIdentityContext>());
 
             self.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<FilmsIdentityContext>()

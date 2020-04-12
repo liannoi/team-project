@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using TeamProject.Application.Common.Interfaces.Identity;
+using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.WebApi.Models.Identity.Returnable;
 using TeamProject.Clients.WebApi.Models.Identity.ViewModels;
 using TeamProject.Domain.Entities.Identity;

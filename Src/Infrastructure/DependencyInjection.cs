@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using TeamProject.Application.Common.Interfaces.Identity;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Domain.Entities;
 using TeamProject.Domain.Entities.Actor;

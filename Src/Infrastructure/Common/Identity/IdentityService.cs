@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TeamProject.Application.Common.Interfaces.Identity;
+using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Domain.Entities.Identity;
 
 namespace TeamProject.Infrastructure.Common.Identity
