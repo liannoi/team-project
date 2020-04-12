@@ -13,6 +13,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Core\Application\TeamProject.Application.csproj" />
 		<ProjectReference Include="..\Core\Domain\TeamProject.Domain.csproj" />
+		<ProjectReference Include="..\Persistence\TeamProject.Persistence.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -27,8 +27,6 @@ namespace TeamProject.Clients.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // TODO: CORS.
-
             services.AddInfrastructure();
             services.AddPersistence(Configuration);
             services.AddApplication();
@@ -60,9 +58,6 @@ namespace TeamProject.Clients.WebApi
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseAuthorization();
-
-            // TODO: CORS.
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

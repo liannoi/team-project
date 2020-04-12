@@ -58,3 +58,42 @@ body {
     white-space: nowrap;
     width: 100%;
 }
+
+/* Authentication */
+
+a:not([href]):not([tabindex]):active { color: #ffffff; }
+
+a:not([href]):not([tabindex]) { cursor: pointer; }
+
+.dropdown-header, dropdown-divider { cursor: default; }
+
+.dropdown-item.disabled { color: #b3b3b3 !important; }
+
+.link-sign-in, .btn-sign-up, .btn-in {
+    color: #ffffff;
+    transition: .4s;
+}
+
+.btn-sign-up:focus, .btn-in:focus { box-shadow: none; }
+
+.btn-sign-up:hover,
+.btn-sign-up:focus, .btn-in:hover, .btn-in:focus { border: 1px solid #d1d5da; }
+
+.link-sign-in:hover { text-decoration: none; }
+
+.link-sign-in:hover, .btn-sign-up:hover, .btn-sign-up:focus, .btn-in:hover, .btn-in:focus { color: hsla(0, 0%, 100%, .75); }
+
+/* Test */
+
+.btn-auth-test {
+    border: 2px solid #ed4337;
+    color: #ffffff;
+    transition: .4s;
+}
+
+.btn-auth-test:focus, .btn-auth-test:hover {
+    background-color: #ed4337;
+    color: #ffffff;
+}
+
+.btn-auth-test:focus { box-shadow: none; }

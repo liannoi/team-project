@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Infrastructure;
 
 namespace TeamProject.Infrastructure.Core
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Persistence;
 using TeamProject.Domain.Entities;
 using TeamProject.Domain.Entities.Actor;
 using TeamProject.Domain.Entities.Film;

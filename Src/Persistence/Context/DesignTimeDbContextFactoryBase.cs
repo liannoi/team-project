@@ -10,7 +10,8 @@ namespace TeamProject.Persistence.Context
     {
         public TContext CreateDbContext(string[] args)
         {
-            return Create(Consts.ApplicationStartDirectory, Environment.GetEnvironmentVariable(Consts.Environment));
+            return Create(PersistenceDefaults.ApplicationStartDirectory,
+                Environment.GetEnvironmentVariable(PersistenceDefaults.Environment));
         }
 
         protected abstract TContext CreateNewInstance(DbContextOptions<TContext> options);
@@ -23,14 +24,14 @@ namespace TeamProject.Persistence.Context
                 .AddJsonFile("appsettings.Local.json", true)
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
                 .AddEnvironmentVariables()
-                .Build().GetConnectionString(Consts.DatabaseNameInConnectionString));
+                .Build().GetConnectionString(PersistenceDefaults.DatabaseNameInConnectionString));
         }
 
         private TContext Create(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
                 throw new ArgumentException(
-                    $"Connection string '{Consts.DatabaseNameInConnectionString}' is null or empty.",
+                    $"Connection string '{PersistenceDefaults.DatabaseNameInConnectionString}' is null or empty.",
                     nameof(connectionString));
 
             Console.WriteLine(

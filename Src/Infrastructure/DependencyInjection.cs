@@ -1,15 +1,17 @@
 ﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using TeamProject.Application;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Identity;
+using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Domain.Entities;
 using TeamProject.Domain.Entities.Actor;
 using TeamProject.Domain.Entities.Film;
-using TeamProject.Infrastructure.Core;
+using TeamProject.Infrastructure.Core.Identity;
 using TeamProject.Infrastructure.Readers.Mock;
+using TeamProject.Persistence;
 
 namespace TeamProject.Infrastructure
 {
@@ -30,7 +32,7 @@ namespace TeamProject.Infrastructure
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection self,
             IConfiguration configuration)
         {
-            var section = configuration.GetSection(Consts.JwtSectionName);
+            var section = configuration.GetSection(InfrastructureDefaults.JwtSectionName);
             self.Configure<IdentitySettings>(section);
             var appSettings = section.Get<IdentitySettings>();
 
@@ -49,6 +51,15 @@ namespace TeamProject.Infrastructure
                             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.Secret))
                     };
                 });
+
+            return self;
+        }
+
+        public static IServiceCollection AddInfrastructureForJwtAuthentication(this IServiceCollection self,
+            IConfiguration configuration)
+        {
+            self.AddPersistence(configuration);
+            self.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
             return self;
         }

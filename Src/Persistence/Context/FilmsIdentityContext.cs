@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Identity;
 
 namespace TeamProject.Persistence.Context
 {

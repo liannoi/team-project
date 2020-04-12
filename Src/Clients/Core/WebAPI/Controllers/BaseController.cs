@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
@@ -8,9 +7,5 @@ namespace TeamProject.Clients.WebApi.Controllers
     // TODO: CORS.
     public abstract class BaseController : ControllerBase
     {
-        protected void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors) ModelState.AddModelError("", error.Description);
-        }
     }
 }

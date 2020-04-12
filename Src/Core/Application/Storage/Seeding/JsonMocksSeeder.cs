@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Infrastructure;
+using TeamProject.Application.Common.Interfaces.Persistence;
 using TeamProject.Domain.Entities;
 using TeamProject.Domain.Entities.Actor;
 using TeamProject.Domain.Entities.Film;
@@ -27,14 +28,15 @@ namespace TeamProject.Application.Storage.Seeding
 
         public async Task SeedAllAsync(CancellationToken cancellationToken)
         {
-            var films = (await _mockFilms.ReadAsync(Consts.FilmsMockPath, cancellationToken)).ToList();
+            var films = (await _mockFilms.ReadAsync(ApplicationDefaults.FilmsMockPath, cancellationToken)).ToList();
 
             if (!_context.Films.Any())
                 await _context.Films.AddRangeAsync(films, cancellationToken);
 
             if (!_context.Actors.Any())
                 await _context.Actors.AddRangeAsync(
-                    await _mockActors.ReadAsync(Consts.ActorsMockPath, cancellationToken), cancellationToken);
+                    await _mockActors.ReadAsync(ApplicationDefaults.ActorsMockPath, cancellationToken),
+                    cancellationToken);
 
             if (!_context.Voting.Any())
                 await _context.Voting.AddAsync(
@@ -42,7 +44,8 @@ namespace TeamProject.Application.Storage.Seeding
 
             if (!_context.Genres.Any())
                 await _context.Genres.AddRangeAsync(
-                    await _mockGenres.ReadAsync(Consts.GenresMockPath, cancellationToken), cancellationToken);
+                    await _mockGenres.ReadAsync(ApplicationDefaults.GenresMockPath, cancellationToken),
+                    cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
 
