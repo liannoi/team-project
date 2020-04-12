@@ -4,7 +4,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using TeamProject.Persistence.Context;
+using TeamProject.Persistence.Contexts.Identity;
 
 namespace TeamProject.Persistence.Migrations.FilmsIdentity
 {

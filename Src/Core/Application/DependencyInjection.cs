@@ -2,12 +2,11 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using TeamProject.Application.Common.Behaviour;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Storage;
 using TeamProject.Application.Storage.Actors;
-using TeamProject.Domain.Entities.Actor;
 using TeamProject.Application.Storage.Genres;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Application
 {
@@ -17,7 +16,6 @@ namespace TeamProject.Application
         {
             self.AddAutoMapper(Assembly.GetExecutingAssembly());
             self.AddMediatR(Assembly.GetExecutingAssembly());
-            self.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
             self.AddTransient<IDataService<Actor>, ActorService>();
             self.AddTransient<IBusinessService<ActorLookupDto>, ActorRepository>();

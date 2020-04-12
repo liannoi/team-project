@@ -9,7 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TeamProject.Application.Storage.Seeding;
-using TeamProject.Persistence.Context;
+using TeamProject.Persistence.Contexts.Core;
+using TeamProject.Persistence.Contexts.Identity;
 
 namespace TeamProject.Clients.WebApi
 {
@@ -26,8 +27,11 @@ namespace TeamProject.Clients.WebApi
                 try
                 {
                     services.GetRequiredService<FilmsDbContext>().Database.Migrate();
-                    services.GetRequiredService<FilmsIdentityContext>().Database.Migrate();
                     await services.GetRequiredService<IMediator>().Send(new SeedingCommand(), CancellationToken.None);
+
+                    services.GetRequiredService<FilmsIdentityContext>().Database.Migrate();
+                    await services.GetRequiredService<IMediator>()
+                        .Send(new SeedingIdentityCommand(), CancellationToken.None);
                 }
                 catch (Exception ex)
                 {

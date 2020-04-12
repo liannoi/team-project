@@ -9,7 +9,7 @@ using TeamProject.Application;
 using TeamProject.Clients.WebApi.Controllers;
 using TeamProject.Infrastructure;
 using TeamProject.Persistence;
-using TeamProject.Persistence.Context;
+using TeamProject.Persistence.Contexts.Core;
 
 namespace TeamProject.Clients.WebApi
 {
@@ -27,8 +27,6 @@ namespace TeamProject.Clients.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // TODO: CORS.
-
             services.AddInfrastructure();
             services.AddPersistence(Configuration);
             services.AddApplication();
@@ -41,6 +39,8 @@ namespace TeamProject.Clients.WebApi
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BaseController>());
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+
+            services.AddJwtAuthentication(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,9 +58,6 @@ namespace TeamProject.Clients.WebApi
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseAuthorization();
-
-            // TODO: CORS.
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

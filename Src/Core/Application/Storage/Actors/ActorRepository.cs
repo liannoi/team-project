@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Storage;
 using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Application.Storage.Actors

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Storage;
 using TeamProject.Application.Storage.Genres;
 
 namespace TeamProject.Clients.WebApi.Controllers

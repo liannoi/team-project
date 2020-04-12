@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using AutoMapper.QueryableExtensions;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Storage;
 
 namespace TeamProject.Application.Storage
 {
