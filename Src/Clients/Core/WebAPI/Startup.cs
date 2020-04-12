@@ -9,7 +9,7 @@ using TeamProject.Application;
 using TeamProject.Clients.WebApi.Controllers;
 using TeamProject.Infrastructure;
 using TeamProject.Persistence;
-using TeamProject.Persistence.Context;
+using TeamProject.Persistence.Contexts.Core;
 
 namespace TeamProject.Clients.WebApi
 {

@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using TeamProject.Domain.Entities.Actor;
-using TeamProject.Infrastructure.Core;
+using TeamProject.Infrastructure.Common.Readers;
 
 namespace TeamProject.Infrastructure.Readers.Mock
 {

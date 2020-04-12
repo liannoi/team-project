@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace TeamProject.Application.Common.Clients.ErrorDescribers
+namespace TeamProject.Persistence.Common.Describers
 {
     public class AbstractErrorDescriber : IdentityErrorDescriber
     {

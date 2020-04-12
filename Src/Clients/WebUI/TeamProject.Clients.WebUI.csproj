@@ -7,10 +7,7 @@
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="8.6.2" />
 		<PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.3" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -20,7 +17,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Core\Domain\TeamProject.Domain.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\TeamProject.Infrastructure.csproj" />
-		<ProjectReference Include="..\..\Persistence\TeamProject.Persistence.csproj" />
 		<ProjectReference Include="..\Core\Common\TeamProject.Clients.Common.csproj" />
 	</ItemGroup>
 

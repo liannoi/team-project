@@ -6,7 +6,7 @@ using TeamProject.Domain.Entities.Film;
 using TeamProject.Domain.Entities.ManyToMany;
 using TeamProject.Domain.Entities.Voting;
 
-namespace TeamProject.Persistence.Context
+namespace TeamProject.Persistence.Contexts.Core
 {
     public class FilmsDbContext : DbContext, IFilmsDbContext
     {

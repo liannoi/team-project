@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TeamProject.Clients.Common;
 using TeamProject.Clients.Common.Models.Identity.ViewModels;
 using TeamProject.Infrastructure;
 
@@ -25,7 +24,7 @@ namespace TeamProject.Clients.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfrastructureForJwtAuthentication(Configuration);
-            services.AddCommonForClients();
+            services.AddInfrastructure();
 
             services.AddControllersWithViews()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterViewModel>());

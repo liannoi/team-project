@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TeamProject.Persistence.Common;
 
-namespace TeamProject.Persistence.Context
+namespace TeamProject.Persistence.Contexts.Identity
 {
     public class FilmsIdentityContextFactory : DesignTimeDbContextFactoryBase<FilmsIdentityContext>
     {

@@ -9,7 +9,8 @@ using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Domain.Entities;
 using TeamProject.Domain.Entities.Actor;
 using TeamProject.Domain.Entities.Film;
-using TeamProject.Infrastructure.Core.Identity;
+using TeamProject.Infrastructure.Common.Identity;
+using TeamProject.Infrastructure.Common.Tools.Api;
 using TeamProject.Infrastructure.Readers.Mock;
 using TeamProject.Persistence;
 
@@ -20,6 +21,8 @@ namespace TeamProject.Infrastructure
         // ReSharper disable once UnusedMethodReturnValue.Global
         public static IServiceCollection AddInfrastructure(this IServiceCollection self)
         {
+            self.AddTransient<IApiTools, ApiTools>();
+
             self.AddTransient<IJsonMocksReader<Film>, JsonFilmsMockReader>();
             self.AddTransient<IJsonMocksReader<Actor>, JsonActorsMockReader>();
             self.AddTransient<IJsonMocksReader<Genre>, JsonGenresMockReader>();

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TeamProject.Domain.Entities.Identity;
 
-namespace TeamProject.Persistence.Context
+namespace TeamProject.Persistence.Contexts.Identity
 {
     public class FilmsIdentityContext : IdentityDbContext<AppUser>
     {

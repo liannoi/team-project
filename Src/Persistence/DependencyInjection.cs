@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TeamProject.Application.Common.Clients.ErrorDescribers;
 using TeamProject.Application.Common.Interfaces.Persistence;
 using TeamProject.Domain.Entities.Identity;
-using TeamProject.Persistence.Context;
+using TeamProject.Persistence.Common.Describers;
+using TeamProject.Persistence.Contexts.Core;
+using TeamProject.Persistence.Contexts.Identity;
 
 namespace TeamProject.Persistence
 {

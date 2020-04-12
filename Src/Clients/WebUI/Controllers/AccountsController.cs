@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.Common;
 using TeamProject.Clients.Common.Models.Identity.Returnable;
 using TeamProject.Clients.Common.Models.Identity.ViewModels;
-using TeamProject.Clients.Common.Tools;
 using TeamProject.Domain.Entities.Identity;
 
 namespace TeamProject.Clients.WebUI.Controllers

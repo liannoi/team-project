@@ -1,4 +1,4 @@
-﻿namespace TeamProject.Infrastructure.Core.Identity
+﻿namespace TeamProject.Infrastructure.Common.Identity
 {
     public class IdentitySettings
     {

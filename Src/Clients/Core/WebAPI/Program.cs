@@ -9,7 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TeamProject.Application.Storage.Seeding;
-using TeamProject.Persistence.Context;
+using TeamProject.Persistence.Contexts.Core;
+using TeamProject.Persistence.Contexts.Identity;
 
 namespace TeamProject.Clients.WebApi
 {

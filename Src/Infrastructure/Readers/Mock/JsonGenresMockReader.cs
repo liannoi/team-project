@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TeamProject.Domain.Entities;
-using TeamProject.Infrastructure.Core;
+using TeamProject.Infrastructure.Common.Readers;
 
 namespace TeamProject.Infrastructure.Readers.Mock
 {

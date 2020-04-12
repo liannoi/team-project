@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.Common.Models.Core.Returnable;
-using TeamProject.Clients.Common.Tools;
 
 namespace TeamProject.Clients.WebUI.Controllers
 {

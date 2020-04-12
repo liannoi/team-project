@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using TeamProject.Application.Common.Interfaces.Identity;
 using TeamProject.Domain.Entities.Identity;
 
-namespace TeamProject.Infrastructure.Core.Identity
+namespace TeamProject.Infrastructure.Common.Identity
 {
     public class IdentityService : IIdentityService
     {
