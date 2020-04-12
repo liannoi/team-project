@@ -1,4 +1,4 @@
-﻿@model TeamProject.Clients.Common.Models.Identity.ViewModels.RegisterViewModel
+﻿@model TeamProject.Clients.WebUI.Models.RegisterViewModel
 @{
     ViewData["Title"] = "Sign up";
 }
@@ -15,7 +15,7 @@
         <form asp-action="SignUp">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-row">
-                <div class="col-md-4 mt-2">
+                <div class="col-md-3 mt-2">
                     <div class="form-group">
                         <input asp-for="Email" class="form-control mb-1" placeholder="Email"/>
                         <span asp-validation-for="Email" class="text-danger"></span>
@@ -30,10 +30,15 @@
                         <input asp-for="ConfirmPassword" class="form-control mt-4 mb-1" placeholder="Repeat password" type="password"/>
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
+
+                    <div class="form-group">
+                        <label asp-for="Roles" class="mt-1 mb-2">Role</label>
+                        <select asp-for="Role" class="form-control" asp-items="Model.Roles"></select>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group mt-2">
+            <div class="form-group mt-3">
                 <input type="submit" value="Sign up" class="btn btn-primary"/>
             </div>
         </form>

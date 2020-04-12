@@ -17,7 +17,7 @@ namespace TeamProject.Clients.WebUI.Controllers
             _apiTools = apiTools;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
             var model = (await _apiTools.FetchAsync<List<ActorReturnModel>>("https://localhost:5001/api/actors/getall"))

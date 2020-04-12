@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
 
-namespace TeamProject.Clients.Common.Models.Identity.ViewModels
+namespace TeamProject.Clients.WebUI.Models
 {
     public class RegisterViewModelValidator : AbstractValidator<RegisterViewModel>
     {

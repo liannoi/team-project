@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TeamProject.Clients.Common.Models.Identity.ViewModels;
+using TeamProject.Clients.WebUI.Models;
 using TeamProject.Infrastructure;
 
 namespace TeamProject.Clients.WebUI
@@ -27,7 +28,11 @@ namespace TeamProject.Clients.WebUI
             services.AddInfrastructure();
 
             services.AddControllersWithViews()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterViewModel>());
+                .AddFluentValidation(fv =>
+                {
+                    fv.RegisterValidatorsFromAssemblyContaining<RegisterViewModel>();
+                    fv.RegisterValidatorsFromAssemblyContaining<LoginViewModel>();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,13 +5,14 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
-using TeamProject.Domain.Entities.Identity;
+using TeamProject.Domain.Entities;
 
 namespace TeamProject.Infrastructure.Common.Identity
 {
     public class IdentityService : IIdentityService
     {
         private readonly IdentitySettings _identitySettings;
+
         private Claim[] _claims;
         private SigningCredentials _credentials;
         private DateTime? _expires;

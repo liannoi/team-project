@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
-using TeamProject.Domain.Entities.Identity;
+using TeamProject.Domain.Entities;
 
 namespace TeamProject.Application.Common.Interfaces.Infrastructure
 {

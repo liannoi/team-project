@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TeamProject.Application.Common.Interfaces.Persistence;
-using TeamProject.Domain.Entities.Identity;
+using TeamProject.Domain.Entities;
 using TeamProject.Persistence.Common.Describers;
 using TeamProject.Persistence.Contexts.Core;
 using TeamProject.Persistence.Contexts.Identity;

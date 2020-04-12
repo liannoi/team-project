@@ -1,8 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using TeamProject.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace TeamProject.Application.Storage.Seeding
 {
@@ -10,16 +9,16 @@ namespace TeamProject.Application.Storage.Seeding
     {
         public class SeedingIdentityCommandHandler : IRequestHandler<SeedingIdentityCommand>
         {
-            private readonly IdentityDbContext<AppUser> _identityContext;
+            private readonly RoleManager<IdentityRole> _roleManager;
 
-            public SeedingIdentityCommandHandler(IdentityDbContext<AppUser> identityContext)
+            public SeedingIdentityCommandHandler(RoleManager<IdentityRole> roleManager)
             {
-                _identityContext = identityContext;
+                _roleManager = roleManager;
             }
 
             public async Task<Unit> Handle(SeedingIdentityCommand request, CancellationToken cancellationToken)
             {
-                await new MocksSeeder(_identityContext).SeedAllAsync(cancellationToken);
+                await new HardMocksSeeder(_roleManager).SeedAllAsync(cancellationToken);
 
                 return Unit.Value;
             }

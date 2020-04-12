@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.WebApi.Models.Identity.Returnable;
 using TeamProject.Clients.WebApi.Models.Identity.ViewModels;
-using TeamProject.Domain.Entities.Identity;
+using TeamProject.Domain.Entities;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
@@ -15,11 +15,14 @@ namespace TeamProject.Clients.WebApi.Controllers
     {
         private readonly IIdentityService _identityService;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountsController(UserManager<AppUser> userManager, IIdentityService identityService)
+        public AccountsController(UserManager<AppUser> userManager, IIdentityService identityService,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _identityService = identityService;
+            _roleManager = roleManager;
         }
 
         [HttpPost]
@@ -32,10 +35,13 @@ namespace TeamProject.Clients.WebApi.Controllers
             var user = new AppUser {Email = registerModel.Email, UserName = registerModel.Email};
             var result = await _userManager.CreateAsync(user, registerModel.Password);
 
-            if (result.Succeeded)
-                return Ok(new JwtTokenReturnModel {Token = _identityService.CreateJsonWebToken(user)});
+            if (!result.Succeeded)
+                return BadRequest(new JwtTokenReturnModel {Errors = result.Errors.Select(error => error.Description)});
 
-            return BadRequest(new JwtTokenReturnModel {Errors = result.Errors.Select(error => error.Description)});
+            await _userManager.AddToRoleAsync(await _userManager.FindByEmailAsync(registerModel.Email),
+                (await _roleManager.FindByIdAsync(registerModel.Role)).Name);
+
+            return Ok(new JwtTokenReturnModel {Token = _identityService.CreateJsonWebToken(user)});
         }
 
         [HttpPost]
@@ -46,9 +52,9 @@ namespace TeamProject.Clients.WebApi.Controllers
             if (!ModelState.IsValid) return BadRequest(new LoginViewModelValidator().Validate(loginModel).Errors);
 
             var user = await _userManager.FindByEmailAsync(loginModel.Email);
-
             var succeeded = await _userManager.CheckPasswordAsync(user, loginModel.Password);
-            if (succeeded) return Ok(new JwtTokenReturnModel {Token = _identityService.CreateJsonWebToken(user)});
+            if (succeeded)
+                return Ok(new JwtTokenReturnModel {Token = _identityService.CreateJsonWebToken(user)});
 
             return BadRequest(new JwtTokenReturnModel {Errors = new List<string> {"Invalid username or password."}});
         }
