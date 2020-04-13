@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using TeamProject.Application.Common.Mappings;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Actor;
+using TeamProject.Domain.Entities.Film;
+using TeamProject.Domain.Entities.ManyToMany;
 
 namespace TeamProject.Application.Storage.ActorsPhotos
 {

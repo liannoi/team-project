@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using TeamProject.Application.Common.Mappings;
 using TeamProject.Domain.Entities;
+using TeamProject.Domain.Entities.Film;
 
 namespace TeamProject.Application.Storage.Films
 {

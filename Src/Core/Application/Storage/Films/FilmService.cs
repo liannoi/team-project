@@ -7,6 +7,8 @@ using TeamProject.Application.Common.Interfaces;
 using TeamProject.Domain.Entities;
 using System.Linq;
 using System.Threading;
+using TeamProject.Application.Common.Interfaces.Persistence;
+using TeamProject.Domain.Entities.Film;
 
 namespace TeamProject.Application.Storage.Films
 {

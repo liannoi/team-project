@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using TeamProject.Application.Common.Interfaces;
 using TeamProject.Application.Storage.Actors;
 using TeamProject.Application.Storage.Films;
-using TeamProject.Application.Storage.Genere;
+using TeamProject.Application.Storage.Genres;
 
 namespace TeamProject.Clients.WebApi.ViewModels.Films
 {
@@ -16,7 +16,7 @@ namespace TeamProject.Clients.WebApi.ViewModels.Films
         public DateTime PublishYear { get; set; }
         public string Description { get; set; }
         public ICollection<ActorLookupDto> _actors { get; set; }
-        public ICollection<GenreDTO> _genres { get; set; }
+        public ICollection<GenreLookupDto> _genres { get; set; }
         //public ICollection<PhotoDTO> _photos { get; set; }
         //public static List<FilmAtorsGenresViewModel> GetFilmViewModel(IBusinessService<ActorLookupDto> _actorRepository,
         //    IBusinessService<GenreDTO> _filmRepository,
