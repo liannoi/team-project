@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Application\TeamProject.Application.csproj" />
     <ProjectReference Include="..\Core\Common\TeamProject.Clients.Common.csproj" />
   </ItemGroup>
 

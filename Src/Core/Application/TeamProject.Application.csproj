@@ -17,9 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Exceptions\" />
-    <Folder Include="Storage\ActorsPhotos\" />
     <Folder Include="Storage\FilmsPhotos\" />
-    <Folder Include="Storage\Films\" />
     <Folder Include="Storage\Seeding\" />
     <Folder Include="Storage\VotingPolles\" />
     <Folder Include="Storage\Voting\" />
