@@ -33,15 +33,15 @@ namespace TeamProject.Clients.WebUI.Controllers
         {
             return View(new ActorReturnModel());
         }
-        [HttpPost]
-        public async Task<IActionResult> AddActor(ActorReturnModel _actor)
-        {
-            await _apiTools.PostAsync<ActorReturnModel>(CommonClientsDefaults., _actor);
-            return RedirectToAction("Actors");
-        }
-        public ActionResult UpdateActor(int id)
-        {
+        //[HttpPost]
+        //public async Task<IActionResult> AddActor(ActorReturnModel _actor)
+        //{
+        //    await _apiTools.PostAsync<ActorReturnModel>(CommonClientsDefaults., _actor);
+        //    return RedirectToAction("Actors");
+        //}
+        //public ActionResult UpdateActor(int id)
+        //{
 
-        }
+        //}
     }
 }
