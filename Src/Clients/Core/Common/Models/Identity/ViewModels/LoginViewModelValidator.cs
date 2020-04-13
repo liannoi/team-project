@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Validators;
 
 namespace TeamProject.Clients.Common.Models.Identity.ViewModels
 {
@@ -8,7 +9,8 @@ namespace TeamProject.Clients.Common.Models.Identity.ViewModels
         {
             RuleFor(e => e.Email)
                 .NotNull()
-                .NotEmpty();
+                .NotEmpty()
+                .EmailAddress(EmailValidationMode.AspNetCoreCompatible);
 
             RuleFor(e => e.Password)
                 .NotNull()

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,27 +13,24 @@ using TeamProject.Domain.Entities;
 
 namespace TeamProject.Clients.WebUI.Controllers
 {
-    public class AccountsController : BaseController
+    public class AccountController : BaseController
     {
         private readonly IApiTools _apiTools;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
 
-        public AccountsController(IApiTools apiTools, SignInManager<AppUser> signInManager,
-            RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager)
+        public AccountController(IApiTools apiTools, SignInManager<AppUser> signInManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _apiTools = apiTools;
             _signInManager = signInManager;
             _roleManager = roleManager;
-            _userManager = userManager;
         }
 
         [HttpGet]
         public IActionResult SignUp()
         {
-            return View(new RegisterViewModel
-                {Roles = _roleManager.Roles.Select(x => new SelectListItem(x.Name, x.Id.ToString()))});
+            return View(new RegisterViewModel {Roles = Roles()});
         }
 
         [HttpPost]
@@ -56,21 +54,35 @@ namespace TeamProject.Clients.WebUI.Controllers
             }
 
             AddErrors(result.Errors);
+            model.Roles = Roles();
 
             return View(model);
 
             #endregion
         }
 
+        /// <summary>
+        ///     Sign in.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult SignIn()
+        public async Task<IActionResult> Login(string returnUrl = null)
         {
+            await SignOutAsync();
+            ViewData["ReturnUrl"] = returnUrl;
+
             return View();
         }
 
+        /// <summary>
+        ///     Sign in.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SignIn([FromForm] LoginViewModel model)
+        public async Task<IActionResult> Login([FromForm] LoginViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -85,7 +97,7 @@ namespace TeamProject.Clients.WebUI.Controllers
                 HttpContext.Response.Cookies.Append(MvcClientDefaults.InCookiesJwtTokenName, result.Token);
                 await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToLocal(ViewData["ReturnUrl"] as string);
             }
 
             AddErrors(result.Errors);
@@ -98,9 +110,37 @@ namespace TeamProject.Clients.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> SignOut()
         {
-            HttpContext.Response.Cookies.Delete(MvcClientDefaults.InCookiesJwtTokenName);
-            await _signInManager.SignOutAsync();
+            await SignOutAsync();
+
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        #region Helpers
+
+        private IEnumerable<SelectListItem> Roles()
+        {
+            return _roleManager.Roles.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+        }
+
+        private async Task SignOutAsync()
+        {
+            HttpContext.Response.Cookies.Delete(MvcClientDefaults.InCookiesJwtTokenName);
+            await _signInManager.SignOutAsync();
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            return string.IsNullOrEmpty(returnUrl)
+                ? (IActionResult) RedirectToAction("Index", "Home")
+                : Redirect(returnUrl);
+        }
+
+        #endregion
     }
 }
