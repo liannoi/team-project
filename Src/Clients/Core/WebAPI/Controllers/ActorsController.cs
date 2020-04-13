@@ -24,6 +24,16 @@ namespace TeamProject.Clients.WebApi.Controllers
         {
             return Ok(_repository.Select());
         }
+        [HttpGet("{Id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<ActorLookupDto> Get(int id)
+        {
+            var result = _repository.Find(e => e.ActorId == id).FirstOrDefault();
+            if (result != null) return Ok(result);
+
+            return BadRequest("Not found");
+        }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
