@@ -9,7 +9,7 @@ namespace TeamProject.Clients.WebUI.Models
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
 
-        public IEnumerable<SelectListItem> Roles { get; set; }
         public string Role { get; set; }
+        public IEnumerable<SelectListItem> Roles { get; set; }
     }
 }

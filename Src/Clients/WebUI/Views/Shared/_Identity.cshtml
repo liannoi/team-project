@@ -5,7 +5,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item mt-1">
-        <form asp-action="SignOut" asp-controller="Accounts" id="form-sign-out" method="post">
+        <form asp-action="SignOut" asp-controller="Account" id="form-sign-out" method="post">
             <div class="form-row">
                 <div class="btn-group dropleft">
                     <button type="button" class="btn btn-in btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
@@ -27,8 +27,8 @@
 else
 {
     <li class="nav-item mt-1">
-        <a class="link-sign-in" asp-controller="Accounts" asp-action="SignIn">Sign in</a>
-        <a asp-controller="Accounts" asp-action="SignUp" class="mt-n1 ml-3 btn-sign-up btn">Sign up</a>
+        <a class="link-sign-in" asp-controller="Account" asp-action="Login">Sign in</a>
+        <a asp-controller="Account" asp-action="SignUp" class="mt-n1 ml-3 btn-sign-up btn">Sign up</a>
 
         @* DropDownList *@
         @*<div class="ml-3 mt-n1 btn-group">
@@ -44,7 +44,7 @@ else
 }
 
 @* DEBUG *@
-@*<li class="nav-item mt-1 ml-3">
+<li class="nav-item mt-1 ml-3">
     <div class="btn-group dropleft">
         <button type="button" class="btn btn-auth-test btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
             Test
@@ -53,7 +53,7 @@ else
             <a class="dropdown-item" asp-controller="Tests" asp-action="Index">Authorize attribute (Index)</a>
         </div>
     </div>
-</li>*@
+</li>
 
 <script>
     function runtime() {

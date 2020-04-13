@@ -1,18 +1,18 @@
-﻿@model TeamProject.Clients.WebUI.Models.RegisterViewModel
+﻿@model TeamProject.Clients.Common.Models.Identity.ViewModels.LoginViewModel
 @{
-    ViewData["Title"] = "Sign up";
+    ViewData["Title"] = "Sign in";
 }
 
 <div class="row mb-3">
     <div class="col-md-12">
-        <h2>Sign up</h2>
+        <h2>Sign in</h2>
         <hr>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="SignUp">
+        <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-row">
                 <div class="col-md-3 mt-2">
@@ -22,24 +22,14 @@
                     </div>
 
                     <div class="form-group">
-                        <input asp-for="Password" class="form-control mt-4 mb-1" placeholder="Password"/>
+                        <input asp-for="Password" class="form-control mt-4 mb-1" placeholder="Password" type="password"/>
                         <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <input asp-for="ConfirmPassword" class="form-control mt-4 mb-1" placeholder="Repeat password" type="password"/>
-                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="Roles" class="mt-1 mb-2">Role</label>
-                        <select asp-for="Role" class="form-control" asp-items="Model.Roles"></select>
                     </div>
                 </div>
             </div>
 
             <div class="form-group mt-3">
-                <input type="submit" value="Sign up" class="btn btn-primary"/>
+                <input type="submit" value="Sign in" class="btn btn-primary"/>
             </div>
         </form>
     </div>
