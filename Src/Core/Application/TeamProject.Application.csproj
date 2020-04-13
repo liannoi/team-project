@@ -20,6 +20,7 @@
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Storage\FilmsPhotos\" />
     <Folder Include="Storage\ActorsPhotos\" />
+    <Folder Include="Storage\Seeding\" />
     <Folder Include="Storage\Films\" />
     <Folder Include="Storage\VotingPolles\" />
     <Folder Include="Storage\Voting\" />
