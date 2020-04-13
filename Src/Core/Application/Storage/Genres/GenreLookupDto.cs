@@ -14,6 +14,7 @@ namespace TeamProject.Application.Storage.Genres
             profile.CreateMap<Genre, GenreLookupDto>()
                 .ForMember(x => x.GenreId, opt => opt.MapFrom(r => r.GenreId))
                 .ForMember(x => x.Title, opt => opt.MapFrom(r => r.Title));
+            profile.CreateMap<GenreLookupDto, Genre>();
         }
     }
 }

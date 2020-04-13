@@ -19,6 +19,7 @@ namespace TeamProject.Application.Storage.Films
                 .ForMember(d => d.Title, opt => opt.MapFrom(s => s.Title))
                 .ForMember(d => d.PublishYear, opt => opt.MapFrom(s => s.PublishYear))
                 .ForMember(d => d.Description, opt => opt.MapFrom(s => s.Description));
+            profile.CreateMap<FilmLookupDto, Film>();
         }
     }
 }
