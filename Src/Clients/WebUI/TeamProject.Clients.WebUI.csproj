@@ -14,7 +14,10 @@
 		<Folder Include="wwwroot\js\" />
 	</ItemGroup>
 
-	<ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Application\TeamProject.Application.csproj" />
+    <ProjectReference Include="..\Core\Common\TeamProject.Clients.Common.csproj" />
+ 
 		<ProjectReference Include="..\..\Core\Domain\TeamProject.Domain.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\TeamProject.Infrastructure.csproj" />
 		<ProjectReference Include="..\Core\Common\TeamProject.Clients.Common.csproj" />
