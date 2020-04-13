@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,22 +18,19 @@ namespace TeamProject.Clients.WebUI.Controllers
         private readonly IApiTools _apiTools;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
 
         public AccountsController(IApiTools apiTools, SignInManager<AppUser> signInManager,
-            RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager)
+            RoleManager<IdentityRole> roleManager)
         {
             _apiTools = apiTools;
             _signInManager = signInManager;
             _roleManager = roleManager;
-            _userManager = userManager;
         }
 
         [HttpGet]
         public IActionResult SignUp()
         {
-            return View(new RegisterViewModel
-                {Roles = _roleManager.Roles.Select(x => new SelectListItem(x.Name, x.Id.ToString()))});
+            return View(new RegisterViewModel {Roles = Roles()});
         }
 
         [HttpPost]
@@ -56,6 +54,7 @@ namespace TeamProject.Clients.WebUI.Controllers
             }
 
             AddErrors(result.Errors);
+            model.Roles = Roles();
 
             return View(model);
 
@@ -100,7 +99,13 @@ namespace TeamProject.Clients.WebUI.Controllers
         {
             HttpContext.Response.Cookies.Delete(MvcClientDefaults.InCookiesJwtTokenName);
             await _signInManager.SignOutAsync();
+
             return RedirectToAction("Index", "Home");
+        }
+
+        private IEnumerable<SelectListItem> Roles()
+        {
+            return _roleManager.Roles.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
         }
     }
 }
