@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using TeamProject.Application.Common.Interfaces;
-using TeamProject.Domain.Entities;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
+using System.Threading.Tasks;
+using TeamProject.Application.Common.Interfaces.Persistence;
+using TeamProject.Domain.Entities.Film;
 
 namespace TeamProject.Application.Storage.Films
 {
-    public class FilmService:BaseDataService<Film>
+    public class FilmService : BaseDataService<Film>
     {
-        public FilmService(IFilmsDbContext context):base(context,context.Films)
+        public FilmService(IFilmsDbContext context) : base(context, context.Films)
         {
-
         }
 
         public override async Task<Film> UpdateAsync(Expression<Func<Film, bool>> expressionToFindOld, Film entity)
@@ -25,7 +22,6 @@ namespace TeamProject.Application.Storage.Films
             await CommitAsync(CancellationToken.None);
 
             return film;
-
         }
     }
 }
