@@ -6,10 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TeamProject.Application;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Clients.WebApi.Controllers;
 using TeamProject.Infrastructure;
 using TeamProject.Persistence;
-using TeamProject.Persistence.Context;
+using TeamProject.Persistence.Contexts.Core;
 
 namespace TeamProject.Clients.WebApi
 {
@@ -27,8 +27,6 @@ namespace TeamProject.Clients.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // TODO: CORS.
-
             services.AddInfrastructure();
             services.AddPersistence(Configuration);
             services.AddApplication();
@@ -38,9 +36,11 @@ namespace TeamProject.Clients.WebApi
             services.AddHealthChecks().AddDbContextCheck<FilmsDbContext>();
 
             services.AddControllers()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IFilmsDbContext>());
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BaseController>());
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+
+            services.AddJwtAuthentication(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +57,7 @@ namespace TeamProject.Clients.WebApi
 
             app.UseRouting();
 
-            // TODO: CORS.
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

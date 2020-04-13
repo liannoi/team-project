@@ -4,7 +4,8 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TeamProject.Application.Common.Interfaces;
+using TeamProject.Application.Common.Interfaces.Persistence;
+using TeamProject.Application.Common.Interfaces.Storage;
 
 namespace TeamProject.Application.Storage
 {

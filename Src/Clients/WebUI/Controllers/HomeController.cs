@@ -1,13 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Clients.Common.Tools;
 using TeamProject.Clients.WebUI.Common.Models.Returnable;
 
+using Microsoft.AspNetCore.Mvc;
+using TeamProject.Application.Common.Interfaces.Infrastructure;
+
 namespace TeamProject.Clients.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IApiTools _apiTools;
 
@@ -16,11 +19,11 @@ namespace TeamProject.Clients.WebUI.Controllers
             _apiTools = apiTools;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-
         public async Task<IActionResult> Actors()
         {
             var model = await _apiTools.FetchAsync<List<ActorReturnModel>>("https://localhost:44378/api/actors/getall");

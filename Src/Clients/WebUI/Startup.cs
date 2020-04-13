@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TeamProject.Clients.Common;
+using TeamProject.Clients.Common.Models.Identity.ViewModels;
+using TeamProject.Clients.WebUI.Models;
+using TeamProject.Infrastructure;
 
 namespace TeamProject.Clients.WebUI
 {
@@ -22,10 +24,15 @@ namespace TeamProject.Clients.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCommonForClients();
+            services.AddInfrastructureForJwtAuthentication(Configuration);
+            services.AddInfrastructure();
 
             services.AddControllersWithViews()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+                .AddFluentValidation(fv =>
+                {
+                    fv.RegisterValidatorsFromAssemblyContaining<RegisterViewModel>();
+                    fv.RegisterValidatorsFromAssemblyContaining<LoginViewModel>();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,13 +41,24 @@ namespace TeamProject.Clients.WebUI
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
 
-            app.UseHttpsRedirection(); //Changes Http requests To Https requests
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            // TODO: Remove.
+            //app.Use((context, next) =>
+            //{
+            //    var token = context.Request.Cookies[Consts.InCookiesJwtTokenName];
+            //    if (!string.IsNullOrEmpty(token)) context.Request.Headers.Add("Authorization", $"Bearer {token}");
+
+            //    return next();
+            //});
 
             app.UseEndpoints(endpoints => endpoints.MapControllerRoute(
                 "default",

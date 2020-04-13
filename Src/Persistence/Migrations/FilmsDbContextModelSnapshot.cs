@@ -4,7 +4,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using TeamProject.Persistence.Context;
+using TeamProject.Persistence.Contexts.Core;
 
 namespace TeamProject.Persistence.Migrations
 {
