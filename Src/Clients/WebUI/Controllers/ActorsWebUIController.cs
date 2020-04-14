@@ -18,15 +18,11 @@ namespace TeamProject.Clients.WebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public async Task<IActionResult> Actors()
         {
             var model = await _apiTools.FetchAsync<List<ActorBindingModel>>(CommonClientsDefaults
                 .WebApiActorsControllerGetAll);
+            
             return View(model);
         }
 
