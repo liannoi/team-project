@@ -1,0 +1,11 @@
+﻿table {
+    opacity: 0.7;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+th{
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+

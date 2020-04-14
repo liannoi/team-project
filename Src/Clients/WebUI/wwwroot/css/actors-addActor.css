@@ -1,0 +1,10 @@
+﻿#addActorRow_Id {
+    opacity: 0.7;
+    border-radius: 10px;
+}
+#fileInput {
+    margin-bottom: 5px;
+}
+#SubmitSingle {
+    opacity: 0.8;
+}
