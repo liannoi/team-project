@@ -21,6 +21,7 @@ namespace TeamProject.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection self)
         {
             self.AddTransient<IApiTools, ApiTools>();
+            self.AddTransient<IAuthorizeApiTools, AuthorizeApiTools>();
 
             self.AddTransient<IJsonMocksReader<Film>, JsonFilmsMockReader>();
             self.AddTransient<IJsonMocksReader<Actor>, JsonActorsMockReader>();

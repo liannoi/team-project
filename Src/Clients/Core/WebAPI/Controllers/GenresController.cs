@@ -9,11 +9,11 @@ using TeamProject.Application.Storage.Genres;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
-    public class GenreController : BaseController
+    public class GenresController : BaseController
     {
         private readonly IBusinessService<GenreLookupDto> _repository;
 
-        public GenreController(IBusinessService<GenreLookupDto> repository)
+        public GenresController(IBusinessService<GenreLookupDto> repository)
         {
             _repository = repository;
         }

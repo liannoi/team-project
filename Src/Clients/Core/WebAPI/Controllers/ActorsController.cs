@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Storage;
@@ -10,6 +12,7 @@ using TeamProject.Application.Storage.ActorsPhotos;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ActorsController : BaseController
     {
         private readonly IBusinessService<ActorPhotoLookupDto> _actorPhotosRepository;
@@ -68,17 +71,19 @@ namespace TeamProject.Clients.WebApi.Controllers
             try
             {
                 var model = await _repository.AddAsync(actor);
+
                 await _actorPhotosRepository.AddAsync(new ActorPhotoLookupDto
                     {ActorId = model.ActorId, Path = "Hello path"});
                 //foreach(var photo in actor.Photos)
                 //{
                 //    await _actorPhotosRepository.AddAsync(new ActorPhotoLookupDto { ActorId = model.ActorId, Path = photo.Path });
                 //}
+
                 model.Photos = _actorPhotosRepository.Find(e => e.ActorId == model.ActorId);
                 return Ok(model);
             }
             // TODO: Specify more specific exceptions.
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest(new ActorLookupDto {Errors = new List<string> {"Error at add entity."}});
             }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.Common.Models.Storage.Actor;
 
-namespace TeamProject.Clients.WebUI.Controllers
+namespace TeamProject.Clients.WebUI.Controllers.Common
 {
     public class TestsController : Controller
     {
