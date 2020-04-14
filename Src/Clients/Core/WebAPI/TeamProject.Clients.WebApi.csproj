@@ -21,10 +21,4 @@
     <ProjectReference Include="..\..\..\Persistence\TeamProject.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Core\" />
-    <Folder Include="Models\Core\Returnable\" />
-    <Folder Include="Models\Core\ViewModels\" />
-  </ItemGroup>
-
 </Project>
