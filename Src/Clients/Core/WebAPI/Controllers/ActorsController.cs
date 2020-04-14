@@ -12,10 +12,11 @@ namespace TeamProject.Clients.WebApi.Controllers
 {
     public class ActorsController : BaseController
     {
-        private readonly IBusinessService<ActorLookupDto> _repository;
         private readonly IBusinessService<ActorPhotoLookupDto> _actorPhotosRepository;
+        private readonly IBusinessService<ActorLookupDto> _repository;
 
-        public ActorsController(IBusinessService<ActorLookupDto> repository, IBusinessService<ActorPhotoLookupDto> actorPhotosRepository)
+        public ActorsController(IBusinessService<ActorLookupDto> repository,
+            IBusinessService<ActorPhotoLookupDto> actorPhotosRepository)
         {
             _repository = repository;
             _actorPhotosRepository = actorPhotosRepository;
@@ -61,12 +62,14 @@ namespace TeamProject.Clients.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ActorLookupDto>> Add([FromBody] ActorLookupDto actor)
-        {   if (!ModelState.IsValid) return BadRequest(new ActorLookupDtoValidator().Validate(actor).Errors);
+        {
+            if (!ModelState.IsValid) return BadRequest(new ActorLookupDtoValidator().Validate(actor).Errors);
 
             try
             {
                 var model = await _repository.AddAsync(actor);
-                await _actorPhotosRepository.AddAsync(new ActorPhotoLookupDto { ActorId = model.ActorId, Path ="Hello path" });
+                await _actorPhotosRepository.AddAsync(new ActorPhotoLookupDto
+                    {ActorId = model.ActorId, Path = "Hello path"});
                 //foreach(var photo in actor.Photos)
                 //{
                 //    await _actorPhotosRepository.AddAsync(new ActorPhotoLookupDto { ActorId = model.ActorId, Path = photo.Path });
@@ -77,7 +80,7 @@ namespace TeamProject.Clients.WebApi.Controllers
             // TODO: Specify more specific exceptions.
             catch (Exception e)
             {
-                return BadRequest(new ActorLookupDto { Errors = new List<string> { "Error at add entity." } });
+                return BadRequest(new ActorLookupDto {Errors = new List<string> {"Error at add entity."}});
             }
         }
 

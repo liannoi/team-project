@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TeamProject.Clients.Common.Models.Storage.Actors.Returnable.ActorBindingModel>
+﻿@model IEnumerable<TeamProject.Clients.Common.Models.Storage.Actor.ActorBindingModel>
 
 @{
     ViewData["Title"] = "Actors";
@@ -11,51 +11,51 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ActorId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Birthday)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ActorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ActorId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @item.Birthday.ToShortDateString()
-                </td>
-                <td>
-                    <a class="btn btn-primary" asp-action="UpdateActor" asp-controller="ActorsWebUI" asp-route-id="@item.ActorId"> Edit </a>
-                    <a class="btn btn-danger btn-delete" asp-action="Delete" asp-controller="ActorsWebUI" data-id="@item.ActorId"> Delete </a>
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @item.Birthday.ToShortDateString()
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="UpdateActor" asp-controller="ActorsWebUI" asp-route-id="@item.ActorId"> Edit </a>
+                <a class="btn btn-danger btn-delete" asp-action="Delete" asp-controller="ActorsWebUI" data-id="@item.ActorId"> Delete </a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
 
 
-@section Scripts{ 
+@section Scripts{
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/js/softDeleter.js"></script>
     <script src="~/js/good-index.js"></script>
-    
+
 }

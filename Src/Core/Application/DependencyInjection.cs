@@ -25,7 +25,7 @@ namespace TeamProject.Application
             self.AddTransient<IBusinessService<GenreLookupDto>, GenreRepository>();
 
             self.AddTransient<IDataService<ActorPhoto>, ActorPhotoService>();
-            self.AddTransient < IBusinessService<ActorPhotoLookupDto>, ActorPhotoRepository>();
+            self.AddTransient<IBusinessService<ActorPhotoLookupDto>, ActorPhotoRepository>();
 
             return self;
         }

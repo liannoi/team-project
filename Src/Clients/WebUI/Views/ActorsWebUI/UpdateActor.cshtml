@@ -1,4 +1,4 @@
-﻿@model TeamProject.Clients.Common.Models.Storage.Actors.Returnable.ActorBindingModel
+﻿@model TeamProject.Clients.Common.Models.Storage.Actor.ActorBindingModel
 
 @{
     ViewData["Title"] = "UpdateActor";
@@ -7,33 +7,33 @@
 <h1>UpdateActor</h1>
 
 <h4>ActorReturnModel</h4>
-<hr />
+<hr/>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="UpdateActor">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>    
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" hidden="hidden">
-               
-                <input asp-for="ActorId" class="form-control" />
-                
+
+                <input asp-for="ActorId" class="form-control"/>
+
             </div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
+                <input asp-for="FirstName" class="form-control"/>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
+                <input asp-for="LastName" class="form-control"/>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Birthday" class="control-label"></label>
-                <input asp-for="Birthday" class="form-control" />
+                <input asp-for="Birthday" class="form-control"/>
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary"/>
             </div>
         </form>
     </div>
@@ -42,4 +42,3 @@
 <div>
     <a asp-action="Actors">Back to List</a>
 </div>
-

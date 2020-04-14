@@ -10,55 +10,55 @@
 </head>
 <body>
 
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">Voting System</a>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Voting System</a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex">
-                    @*<ul class="navbar-nav mr-auto">
+            <div class="navbar-collapse collapse d-sm-inline-flex">
+                @*<ul class="navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Films" asp-action="Index">Left-side</a>
                             </li>
                         </ul>*@
 
-                    <ul class="navbar-nav ml-auto">
-                        @await Html.PartialAsync("_Identity")
-                    </ul>
-
-                </div>
+                <ul class="navbar-nav ml-auto">
+                    @await Html.PartialAsync("_Identity")
+                </ul>
 
             </div>
-        </nav>
-    </header>
 
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <main role="main" class="pb-5">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="footer">
     <div class="container">
-        <main role="main" class="pb-5">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="row pb-3 text-muted text-center">
-                <div class="col-md-12">
-                    <hr>
-                    2020 - Team Project
-                </div>
+        <div class="row pb-3 text-muted text-center">
+            <div class="col-md-12">
+                <hr>
+                2020 - Team Project
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-    @RenderSection("Scripts", false)
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+@RenderSection("Scripts", false)
 
 </body>
 </html>

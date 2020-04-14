@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace TeamProject.Clients.Common.Models.Storage.Actors.Returnable
+namespace TeamProject.Clients.Common.Models.Storage.Actor
 {
     public class ActorBindingModel
     {
