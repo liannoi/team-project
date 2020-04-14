@@ -56,7 +56,7 @@ namespace TeamProject.Clients.WebApi.Controllers
             var succeeded = await _userManager.CheckPasswordAsync(user, loginModel.Password);
             if (succeeded)
                 return Ok(new JwtTokenReturnModel
-                    {Token = _identityService.Expires(DateTime.Now.AddMinutes(1)).CreateJsonWebToken(user)});
+                    {Token = _identityService.CreateJsonWebToken(user)});
 
             return BadRequest(new JwtTokenReturnModel {Errors = new List<string> {"Invalid username or password."}});
         }

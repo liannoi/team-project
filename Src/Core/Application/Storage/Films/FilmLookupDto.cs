@@ -1,11 +1,12 @@
 ﻿using System;
 using AutoMapper;
 using TeamProject.Application.Common.Mappings;
+using TeamProject.Domain;
 using TeamProject.Domain.Entities.Film;
 
 namespace TeamProject.Application.Storage.Films
 {
-    public class FilmLookupDto : IMapFrom<Film>
+    public class FilmLookupDto : ValueObject, IMapFrom<Film>
     {
         public int FilmId { get; set; }
         public string Title { get; set; }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.Common;
-using TeamProject.Clients.Common.Models.Storage.Actor;
+using TeamProject.Clients.Common.Models.Storage.Actors;
 using TeamProject.Clients.WebUI.Controllers.Common;
 
 namespace TeamProject.Clients.WebUI.Controllers.Storage
