@@ -5,9 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using TeamProject.Application.Common.Interfaces.Storage;
 using TeamProject.Application.Storage.Actors;
 using TeamProject.Application.Storage.ActorsPhotos;
+using TeamProject.Application.Storage.Films;
 using TeamProject.Application.Storage.Genres;
 using TeamProject.Domain.Entities;
 using TeamProject.Domain.Entities.Actor;
+using TeamProject.Domain.Entities.Film;
 
 namespace TeamProject.Application
 {
@@ -26,6 +28,9 @@ namespace TeamProject.Application
 
             self.AddTransient<IDataService<ActorPhoto>, ActorPhotoService>();
             self.AddTransient<IBusinessService<ActorPhotoLookupDto>, ActorPhotoRepository>();
+
+            self.AddTransient<IDataService<Film>, FilmService>();
+            self.AddTransient<IBusinessService<FilmLookupDto>, FilmRepository>();
 
             return self;
         }

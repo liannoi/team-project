@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentValidation;
 
-namespace TeamProject.Clients.Common.Models.Storage.Actor
+namespace TeamProject.Clients.Common.Models.Storage.Actors
 {
     public class ActorBindingModelValidator : AbstractValidator<ActorBindingModel>
     {

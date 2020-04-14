@@ -11,7 +11,7 @@ using TeamProject.Clients.Common.Models.Identity.ViewModels;
 using TeamProject.Clients.WebUI.Models;
 using TeamProject.Domain.Entities;
 
-namespace TeamProject.Clients.WebUI.Controllers
+namespace TeamProject.Clients.WebUI.Controllers.Common
 {
     public class AccountController : BaseController
     {

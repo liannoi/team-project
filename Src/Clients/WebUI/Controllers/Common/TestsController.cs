@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
-using TeamProject.Clients.Common.Models.Storage.Actor;
+using TeamProject.Clients.Common.Models.Storage.Actors;
 
-namespace TeamProject.Clients.WebUI.Controllers
+namespace TeamProject.Clients.WebUI.Controllers.Common
 {
     public class TestsController : Controller
     {
