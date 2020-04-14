@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TeamProject.Application;
+using TeamProject.Application.Storage.Actors;
 using TeamProject.Clients.WebApi.Controllers;
 using TeamProject.Infrastructure;
 using TeamProject.Persistence;
@@ -36,7 +37,11 @@ namespace TeamProject.Clients.WebApi
             services.AddHealthChecks().AddDbContextCheck<FilmsDbContext>();
 
             services.AddControllers()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BaseController>());
+                .AddFluentValidation(fv =>
+                {
+                    fv.RegisterValidatorsFromAssemblyContaining<BaseController>();
+                    fv.RegisterValidatorsFromAssemblyContaining<ActorLookupDto>();
+                });
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 

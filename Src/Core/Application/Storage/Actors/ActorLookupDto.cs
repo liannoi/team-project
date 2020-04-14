@@ -1,16 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using TeamProject.Application.Common.Mappings;
+using TeamProject.Application.Storage.ActorsPhotos;
+using TeamProject.Application.Storage.Films;
+using TeamProject.Clients.WebApi.Models.Core.Returnable;
 using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Application.Storage.Actors
 {
-    public class ActorLookupDto : IMapFrom<Actor>
+    public class ActorLookupDto : ValueObject, IMapFrom<Actor>
     {
         public int ActorId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Birthday { get; set; }
+
+        public IEnumerable<ActorPhotoLookupDto> Photos { get; set; }
+        public IEnumerable<FilmLookupDto> Films { get; set; }
 
         public void Mapping(Profile profile)
         {

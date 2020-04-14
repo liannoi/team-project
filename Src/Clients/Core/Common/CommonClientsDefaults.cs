@@ -9,8 +9,10 @@
         
         private static string WebApiActorsController => $"{WebApiAddress}/actors";
         public static string WebApiAcotrsControllerGetAll => $"{WebApiActorsController}/getall";
-        public static string WebApiActorsControllerGet => $"{WebApiActorsController}/get";
+        public static string WebApiActorsControllerGet => $"{WebApiActorsController}/get/";
         public static string WebApiActorsControllerAdd => $"{WebApiActorsController}/add";
+        public static string WebApiActorsControllerUpdate => $"{WebApiActorsController}/update";
+        public static string WebApiActorsControllerDelete => $"{WebApiActorsController}/delete/";
 
     }
 }

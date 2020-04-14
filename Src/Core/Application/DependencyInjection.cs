@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using TeamProject.Application.Common.Interfaces.Storage;
 using TeamProject.Application.Storage.Actors;
+using TeamProject.Application.Storage.ActorsPhotos;
 using TeamProject.Application.Storage.Genres;
 using TeamProject.Domain.Entities;
 using TeamProject.Domain.Entities.Actor;
@@ -22,6 +23,9 @@ namespace TeamProject.Application
 
             self.AddTransient<IDataService<Genre>, GenreService>();
             self.AddTransient<IBusinessService<GenreLookupDto>, GenreRepository>();
+
+            self.AddTransient<IDataService<ActorPhoto>, ActorPhotoService>();
+            self.AddTransient < IBusinessService<ActorPhotoLookupDto>, ActorPhotoRepository>();
 
             return self;
         }

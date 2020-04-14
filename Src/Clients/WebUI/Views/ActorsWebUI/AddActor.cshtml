@@ -1,4 +1,4 @@
-﻿@model TeamProject.Clients.Common.Models.Core.Returnable.ActorReturnModel
+﻿@model TeamProject.Clients.Common.Models.Storage.Actors.Returnable.ActorBindingModel
 
 @{
     ViewData["Title"] = "AddActor";
@@ -10,8 +10,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddActor">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>           
+        <form asp-action="AddActor" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
@@ -27,6 +27,12 @@
                 <input asp-for="Birthday" class="form-control" />
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <input type="text" name="id" value="@Model" hidden />
+                <input type="file" name="fileUploadMulti" multiple />
+                <input type="submit" name="Submit" id="SubmitSingle" value="Upload" />
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
