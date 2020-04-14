@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.Common;
-using TeamProject.Clients.Common.Models.Storage.Actors.Returnable;
+using TeamProject.Clients.Common.Models.Storage.Actor;
 
 namespace TeamProject.Clients.WebUI.Controllers
 {
@@ -21,7 +20,9 @@ namespace TeamProject.Clients.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Actors()
         {
-            var model =( await _apiTools.FetchAsync<List<ActorBindingModel>>(CommonClientsDefaults.WebApiAcotrsControllerGetAll)).TakeLast(10);
+            var model = await _apiTools.FetchAsync<List<ActorBindingModel>>(CommonClientsDefaults
+                .WebApiActorsControllerGetAll);
+            
             return View(model);
         }
 
@@ -35,15 +36,16 @@ namespace TeamProject.Clients.WebUI.Controllers
         public async Task<IActionResult> AddActor(ActorBindingModel actor)
         {
             if (!ModelState.IsValid) return View(actor);
-            
-                await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerAdd, actor);
-                return RedirectToAction("Actors");               
+
+            await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerAdd, actor);
+            return RedirectToAction("Actors");
         }
 
         [HttpGet]
         public async Task<ActionResult> UpdateActor(int id)
         {
-            var model = await _apiTools.FetchAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerGet+id);
+            var model = await _apiTools.FetchAsync<ActorBindingModel>(
+                CommonClientsDefaults.WebApiActorsControllerGet + id);
             return View(model);
         }
 
@@ -52,7 +54,8 @@ namespace TeamProject.Clients.WebUI.Controllers
         {
             try
             {
-                await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerUpdate, _actor);
+                await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerUpdate,
+                    _actor);
                 return RedirectToAction("Actors");
             }
             catch
@@ -60,6 +63,7 @@ namespace TeamProject.Clients.WebUI.Controllers
                 throw new Exception();
             }
         }
+
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
@@ -73,6 +77,5 @@ namespace TeamProject.Clients.WebUI.Controllers
                 throw new Exception();
             }
         }
-
     }
 }

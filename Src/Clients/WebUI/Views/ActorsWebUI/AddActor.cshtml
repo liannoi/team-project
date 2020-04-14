@@ -1,13 +1,12 @@
-﻿@model TeamProject.Clients.Common.Models.Storage.Actors.Returnable.ActorBindingModel
+﻿@model TeamProject.Clients.Common.Models.Storage.Actor.ActorBindingModel
 
 @{
     ViewData["Title"] = "AddActor";
 }
-<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
 <h1>Adding actor...    </h1>
-
-
 <hr />
+
 <div class="row bg-dark" id="addActorRow_Id">
     <div class="col-md-5 col-lg-5 col-sm-5 col-xl-5">
         <form asp-action="AddActor" enctype="multipart/form-data">
@@ -41,6 +40,10 @@
     </div>
 </div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
 @section Styles {
-    <link href="~/css/actors-addActor.css" rel="stylesheet" />
+    <link href="~/css/actors-add.css" rel="stylesheet" />
 }

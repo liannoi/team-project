@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TeamProject.Application.Common.Mappings;
 using TeamProject.Domain.Entities.Actor;
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TeamProject.Clients.Common.Models.Storage.Actors.Returnable.ActorBindingModel>
+﻿@model IEnumerable<TeamProject.Clients.Common.Models.Storage.Actor.ActorBindingModel>
 
 @{
     ViewData["Title"] = "Actors";
@@ -9,8 +9,9 @@
 <p>
     <a class="btn btn-outline-dark" asp-action="AddActor">Create New</a>
 </p>
+
 <div class="row mt-2">
-    <div class="col-md-12  div_table">
+    <div class="col-md-12">
         <table class="table table-dark">
             <thead class="thead-dark">
                 <tr>
@@ -56,12 +57,12 @@
     </div>
 </div>
 
-
-@section Scripts{
+@section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/js/softDeleter.js"></script>
     <script src="~/js/good-index.js"></script>
 }
+
 @section Styles {
-    <link href="~/css/actors-Actors.css" rel="stylesheet" />
+    <link href="~/css/actors-actors.css" rel="stylesheet" />
 }
