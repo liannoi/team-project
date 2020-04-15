@@ -13,7 +13,7 @@ namespace TeamProject.Clients.WebUI.Common.Pagination.Models.ViewModels
 
         //    // 2. Add pagging info.
         
-        //    // 3. Collection with padding.
+        //    // 3. Collection with paging.
         
         public override Expression<Func<ActorBindingModel, bool>> Predicate
         {
@@ -23,7 +23,7 @@ namespace TeamProject.Clients.WebUI.Common.Pagination.Models.ViewModels
             }
         }
 
-        //    // 4. Add padding by entities.
+        //    // 4. Add paging by entities.
         public override IEnumerable<ActorBindingModel> EntitiesPerPage
         {
             get

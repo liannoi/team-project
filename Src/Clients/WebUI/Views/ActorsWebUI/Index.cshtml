@@ -16,7 +16,8 @@
     var pageValue = 1;
     if (TempData["PageInfo"] != null)
     {
-        pageValue = ((ActorsBindingModelViewModel)TempData["PageInfo"]).PagingInfo.CurrentPage;
+        pageValue = (int)TempData["PageInfo"];
+        //pageValue = ((ActorsBindingModelViewModel)TempData["PageInfo"]).PagingInfo.CurrentPage;
     }
 }
 

@@ -32,38 +32,10 @@ namespace TeamProject.Clients.WebUI.Controllers
         //[HttpGet]
         public async Task<IActionResult> Actors(int currentPage = 1)
         {
-            //var model = await _apiTools.FetchAsync<List<ActorsBindingModelViewModel>>(CommonClientsDefaults.WebApiAcotrsControllerGetAll);
-            //var model = new _ActorsBindingModelViewModel();
-
-            
-            //model.Collection = new List<ActorBindingModel>()
-            //    {
-            //        new ActorBindingModel
-            //        {
-            //            ActorId=1,
-            //            Birthday=DateTime.Now,
-            //            FirstName="Test CORS",
-            //            LastName="Test CORS"
-            //        }
-            //}.AsQueryable();
-
-
-
-            // model.Collection = (await _apiTools.FetchAsync<List<ActorBindingModel>>(CommonClientsDefaults.WebApiAcotrsControllerGetAll)).AsQueryable();
-            //var model = new List<ActorBindingModel>()
-            //{
-            //    new ActorBindingModel
-            //    {
-            //        ActorId=1,
-            //        Birthday=DateTime.Now,
-            //        FirstName="Test CORS",
-            //        LastName="Test CORS"
-            //    }
-            //};
-            //var model = new _ActorsBindingModelViewModel();
+           
             var model = new ActorsBindingModelViewModel();
             model.PagingInfo.CurrentPage = currentPage;
-            //TempData["PageInfo"] = model;
+            TempData["PageInfo"] = model.PagingInfo.CurrentPage;
             model.Collection = (await _apiTools.FetchAsync<List<ActorBindingModel>>(CommonClientsDefaults.WebApiAcotrsControllerGetAll)).TakeLast(100).AsQueryable();
             return PartialView("Actors",model);
         }
@@ -101,7 +73,7 @@ namespace TeamProject.Clients.WebUI.Controllers
             try
             {
                 await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerUpdate, _actor);
-                return RedirectToAction("Actors");
+                return RedirectToAction("Index");
             }
             catch
             {
