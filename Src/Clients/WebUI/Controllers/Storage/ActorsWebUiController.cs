@@ -41,7 +41,7 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
                 .TakeLast(100)
                 .AsQueryable();
 
-            return PartialView("_Actors", model);
+            return PartialView("Actors", model);
         }
 
         [HttpGet]

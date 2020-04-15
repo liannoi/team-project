@@ -1,0 +1,26 @@
+﻿
+@{
+    var pageValue = 1;
+    if (TempData["PageInfo"] != null)
+    {
+        pageValue = (int)TempData["PageInfo"];
+        //pageValue = ((ActorsBindingModelViewModel)TempData["PageInfo"]).PagingInfo.CurrentPage;
+    }
+}
+
+<div id="genres">
+
+</div>
+
+@section Scripts{
+    <script src="~/js/pageSwitcher.js"></script>
+    <script>
+        $(function () {
+            $('#genres').load('/GenresWebUi/genres');
+        @*let SwitchPage = new SwitchPage('#genres', '/GenresWebUi/genres', currentPage,@pageValue);
+        SwitchPage.PageLoad(@pageValue);
+        SwitchPage.Switcher('.switchPage', 'page-id');*@
+    })
+    </script>
+
+}
