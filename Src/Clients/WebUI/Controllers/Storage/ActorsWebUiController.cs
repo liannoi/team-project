@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.Common;
 using TeamProject.Clients.Common.Models.Storage.Actors;
@@ -16,30 +18,55 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
     {
         private readonly IApiTools _apiTools;
         private readonly IAuthorizeApiTools _authorizeApiTools;
+        private readonly ILogger<ActorsWebUiController> _logger;
 
-        public ActorsWebUiController(IApiTools apiTools, IAuthorizeApiTools authorizeApiTools)
+        public ActorsWebUiController(IApiTools apiTools, IAuthorizeApiTools authorizeApiTools,
+            ILogger<ActorsWebUiController> logger)
         {
             _apiTools = apiTools;
             _authorizeApiTools = authorizeApiTools;
+            _logger = logger;
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("Request for access to the actor controller Index action method.");
+
+            try
+            {
+                // Check the viability of the JWT token.
+                var tmp = (await _authorizeApiTools.FetchAsync<List<ActorBindingModel>>(
+                    CommonClientsDefaults.WebApiActorsControllerGetAll, JwtToken)).FirstOrDefault();
+            }
+            catch (AuthenticationException e)
+            {
+                _logger.LogWarning(e, e.Message);
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
 
-        //[HttpGet]
+        // TODO: Specify attribute with HTTP method.
         public async Task<IActionResult> Actors(int currentPage = 1)
         {
             var model = new ActorsBindingModelViewModel {PagingInfo = {CurrentPage = currentPage}};
             TempData["PageInfo"] = model.PagingInfo.CurrentPage;
 
-            model.Collection =
-                (await _authorizeApiTools.FetchAsync<List<ActorBindingModel>>(
-                    CommonClientsDefaults.WebApiActorsControllerGetAll, JwtToken))
-                .TakeLast(100)
-                .AsQueryable();
+            try
+            {
+                model.Collection =
+                    (await _authorizeApiTools.FetchAsync<List<ActorBindingModel>>(
+                        CommonClientsDefaults.WebApiActorsControllerGetAll, JwtToken))
+                    .TakeLast(100)
+                    .AsQueryable();
+            }
+            catch (AuthenticationException e)
+            {
+                _logger.LogWarning(e.Message);
+                throw;
+            }
 
             return PartialView("_Actors", model);
         }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TeamProject.Domain.Entities.ManyToMany;
 
-namespace TeamProject.Persistence.Configurations
+namespace TeamProject.Persistence.Configurations.ManyToMany
 {
     public class ActorsFilmsConfiguration : IEntityTypeConfiguration<ActorsFilms>
     {

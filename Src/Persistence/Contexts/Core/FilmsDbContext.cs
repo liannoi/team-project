@@ -14,21 +14,31 @@ namespace TeamProject.Persistence.Contexts.Core
         {
         }
 
+        public DbSet<Log> Logs { get; set; }
+
         public DbSet<Actor> Actors { get; set; }
-        public DbSet<ActorsFilms> ActorsFilms { get; set; }
         public DbSet<ActorPhoto> ActorPhotos { get; set; }
+
         public DbSet<Film> Films { get; set; }
-        public DbSet<FilmsGenres> FilmsGenres { get; set; }
         public DbSet<FilmPhoto> FilmPhotos { get; set; }
-        public DbSet<Genre> Genres { get; set; }
+
         public DbSet<Voting> Voting { get; set; }
         public DbSet<VotingAnswer> VotingAnswers { get; set; }
         public DbSet<VotingPolle> VotingPolle { get; set; }
-        public DbSet<VotingPolleRelation> VotingPolles { get; set; }
+
+        public DbSet<Genre> Genres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FilmsDbContext).Assembly);
         }
+
+        #region Many-to-many relationship
+
+        public DbSet<ActorsFilms> ActorsFilms { get; set; }
+        public DbSet<FilmsGenres> FilmsGenres { get; set; }
+        public DbSet<VotingPolleRelation> VotingPolles { get; set; }
+
+        #endregion
     }
 }

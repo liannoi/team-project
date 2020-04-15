@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TeamProject.Domain.Entities.Voting;
 
-namespace TeamProject.Persistence.Configurations
+namespace TeamProject.Persistence.Configurations.Voting
 {
-    public class VotingConfiguration : IEntityTypeConfiguration<Voting>
+    public class VotingConfiguration : IEntityTypeConfiguration<Domain.Entities.Voting.Voting>
     {
-        public void Configure(EntityTypeBuilder<Voting> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.Voting.Voting> builder)
         {
             builder.HasIndex(e => e.Name)
                 .HasName("UNQ_Voting_Name")

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TeamProject.Domain.Entities.Film;
 
-namespace TeamProject.Persistence.Configurations
+namespace TeamProject.Persistence.Configurations.Film
 {
     public class FilmPhotoConfiguration : IEntityTypeConfiguration<FilmPhoto>
     {

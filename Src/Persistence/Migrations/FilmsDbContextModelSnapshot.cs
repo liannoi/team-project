@@ -19,7 +19,7 @@ namespace TeamProject.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Exam.Domain.Entities.Actor", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Actor.Actor", b =>
             {
                 b.Property<int>("ActorId")
                     .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace TeamProject.Persistence.Migrations
                 b.ToTable("Actors");
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.ActorPhoto", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Actor.ActorPhoto", b =>
             {
                 b.Property<int>("PhotoId")
                     .ValueGeneratedOnAdd()
@@ -72,22 +72,7 @@ namespace TeamProject.Persistence.Migrations
                 b.ToTable("ActorPhotos");
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.ActorsFilms", b =>
-            {
-                b.Property<int>("ActorId")
-                    .HasColumnType("int");
-
-                b.Property<int>("FilmId")
-                    .HasColumnType("int");
-
-                b.HasKey("ActorId", "FilmId");
-
-                b.HasIndex("FilmId");
-
-                b.ToTable("ActorsFilms");
-            });
-
-            modelBuilder.Entity("Exam.Domain.Entities.Film", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Film.Film", b =>
             {
                 b.Property<int>("FilmId")
                     .ValueGeneratedOnAdd()
@@ -116,7 +101,7 @@ namespace TeamProject.Persistence.Migrations
                 b.ToTable("Films");
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.FilmPhoto", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Film.FilmPhoto", b =>
             {
                 b.Property<int>("PhotoId")
                     .ValueGeneratedOnAdd()
@@ -143,22 +128,7 @@ namespace TeamProject.Persistence.Migrations
                 b.ToTable("FilmPhotos");
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.FilmsGenres", b =>
-            {
-                b.Property<int>("FilmId")
-                    .HasColumnType("int");
-
-                b.Property<int>("GenreId")
-                    .HasColumnType("int");
-
-                b.HasKey("FilmId", "GenreId");
-
-                b.HasIndex("GenreId");
-
-                b.ToTable("FilmsGenres");
-            });
-
-            modelBuilder.Entity("Exam.Domain.Entities.Genre", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Genre", b =>
             {
                 b.Property<int>("GenreId")
                     .ValueGeneratedOnAdd()
@@ -180,62 +150,80 @@ namespace TeamProject.Persistence.Migrations
                 b.ToTable("Genres");
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.Voting", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Log", b =>
             {
-                b.Property<int>("VotingId")
+                b.Property<int>("LogId")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int")
                     .HasAnnotation("SqlServer:ValueGenerationStrategy",
                         SqlServerValueGenerationStrategy.IdentityColumn);
 
-                b.Property<string>("Name")
+                b.Property<string>("Application")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(64)")
+                    .HasMaxLength(64);
+
+                b.Property<string>("Callsite")
+                    .HasColumnType("nvarchar(512)")
+                    .HasMaxLength(512);
+
+                b.Property<string>("Exception")
+                    .HasColumnType("nvarchar(512)")
+                    .HasMaxLength(512);
+
+                b.Property<string>("Level")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(64)")
+                    .HasMaxLength(64);
+
+                b.Property<string>("Message")
                     .IsRequired()
                     .HasColumnType("nvarchar(512)")
                     .HasMaxLength(512);
 
-                b.HasKey("VotingId");
-
-                b.HasIndex("Name")
-                    .IsUnique()
-                    .HasName("UNQ_Voting_Name");
-
-                b.ToTable("Voting");
-            });
-
-            modelBuilder.Entity("Exam.Domain.Entities.VotingAnswers", b =>
-            {
-                b.Property<int>("VotingAnswerId")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
-                        SqlServerValueGenerationStrategy.IdentityColumn);
-
-                b.Property<string>("Text")
-                    .IsRequired()
+                b.Property<string>("Service")
                     .HasColumnType("nvarchar(512)")
                     .HasMaxLength(512);
 
-                b.Property<int>("VotingId")
-                    .HasColumnType("int");
+                b.Property<DateTime>("Time")
+                    .HasColumnType("datetime2");
 
-                b.HasKey("VotingAnswerId");
+                b.HasKey("LogId");
 
-                b.HasIndex("VotingId");
-
-                b.ToTable("VotingAnswers");
+                b.ToTable("Logs");
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.VotingPolle", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.ManyToMany.ActorsFilms", b =>
             {
-                b.Property<int>("VotingPolleId")
+                b.Property<int>("ActorId")
                     .HasColumnType("int");
 
-                b.HasKey("VotingPolleId");
+                b.Property<int>("FilmId")
+                    .HasColumnType("int");
 
-                b.ToTable("VotingPolle");
+                b.HasKey("ActorId", "FilmId");
+
+                b.HasIndex("FilmId");
+
+                b.ToTable("ActorsFilms");
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.VotingPolles", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.ManyToMany.FilmsGenres", b =>
+            {
+                b.Property<int>("FilmId")
+                    .HasColumnType("int");
+
+                b.Property<int>("GenreId")
+                    .HasColumnType("int");
+
+                b.HasKey("FilmId", "GenreId");
+
+                b.HasIndex("GenreId");
+
+                b.ToTable("FilmsGenres");
+            });
+
+            modelBuilder.Entity("TeamProject.Domain.Entities.ManyToMany.VotingPolleRelation", b =>
             {
                 b.Property<int>("VotingPolleId")
                     .ValueGeneratedOnAdd()
@@ -263,81 +251,136 @@ namespace TeamProject.Persistence.Migrations
                 b.ToTable("VotingPolles");
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.ActorPhoto", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Voting.Voting", b =>
             {
-                b.HasOne("Exam.Domain.Entities.Actor", "Actor")
+                b.Property<int>("VotingId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(512)")
+                    .HasMaxLength(512);
+
+                b.HasKey("VotingId");
+
+                b.HasIndex("Name")
+                    .IsUnique()
+                    .HasName("UNQ_Voting_Name");
+
+                b.ToTable("Voting");
+            });
+
+            modelBuilder.Entity("TeamProject.Domain.Entities.Voting.VotingAnswer", b =>
+            {
+                b.Property<int>("VotingAnswerId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy",
+                        SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("Text")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(512)")
+                    .HasMaxLength(512);
+
+                b.Property<int>("VotingId")
+                    .HasColumnType("int");
+
+                b.HasKey("VotingAnswerId");
+
+                b.HasIndex("VotingId");
+
+                b.ToTable("VotingAnswers");
+            });
+
+            modelBuilder.Entity("TeamProject.Domain.Entities.Voting.VotingPolle", b =>
+            {
+                b.Property<int>("VotingPolleId")
+                    .HasColumnType("int");
+
+                b.HasKey("VotingPolleId");
+
+                b.ToTable("VotingPolle");
+            });
+
+            modelBuilder.Entity("TeamProject.Domain.Entities.Actor.ActorPhoto", b =>
+            {
+                b.HasOne("TeamProject.Domain.Entities.Actor.Actor", "Actor")
                     .WithMany("ActorsPhotos")
                     .HasForeignKey("ActorId")
                     .HasConstraintName("FK_ActorsPhotos_ActorId")
                     .IsRequired();
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.ActorsFilms", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.Film.FilmPhoto", b =>
             {
-                b.HasOne("Exam.Domain.Entities.Actor", "Actor")
-                    .WithMany("ActorsFilms")
-                    .HasForeignKey("ActorId")
-                    .HasConstraintName("FK_ActorsFilms_ActorId")
-                    .IsRequired();
-
-                b.HasOne("Exam.Domain.Entities.Film", "Film")
-                    .WithMany("ActorFilms")
-                    .HasForeignKey("FilmId")
-                    .HasConstraintName("FK_ActorsFilms_FilmId")
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("Exam.Domain.Entities.FilmPhoto", b =>
-            {
-                b.HasOne("Exam.Domain.Entities.Film", "Film")
+                b.HasOne("TeamProject.Domain.Entities.Film.Film", "Film")
                     .WithMany("FilmsPhotos")
                     .HasForeignKey("FilmId")
                     .HasConstraintName("FK_FilmsPhotos_FilmId")
                     .IsRequired();
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.FilmsGenres", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.ManyToMany.ActorsFilms", b =>
             {
-                b.HasOne("Exam.Domain.Entities.Film", "Film")
+                b.HasOne("TeamProject.Domain.Entities.Actor.Actor", "Actor")
+                    .WithMany("ActorsFilms")
+                    .HasForeignKey("ActorId")
+                    .HasConstraintName("FK_ActorsFilms_ActorId")
+                    .IsRequired();
+
+                b.HasOne("TeamProject.Domain.Entities.Film.Film", "Film")
+                    .WithMany("ActorFilms")
+                    .HasForeignKey("FilmId")
+                    .HasConstraintName("FK_ActorsFilms_FilmId")
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity("TeamProject.Domain.Entities.ManyToMany.FilmsGenres", b =>
+            {
+                b.HasOne("TeamProject.Domain.Entities.Film.Film", "Film")
                     .WithMany("FilmGenres")
                     .HasForeignKey("FilmId")
                     .HasConstraintName("FK_FilmsGenres_FilmId")
                     .IsRequired();
 
-                b.HasOne("Exam.Domain.Entities.Genre", "Genre")
+                b.HasOne("TeamProject.Domain.Entities.Genre", "Genre")
                     .WithMany("FilmsGenres")
                     .HasForeignKey("GenreId")
                     .HasConstraintName("FK_FilmsGenres_GenreId")
                     .IsRequired();
             });
 
-            modelBuilder.Entity("Exam.Domain.Entities.VotingAnswers", b =>
+            modelBuilder.Entity("TeamProject.Domain.Entities.ManyToMany.VotingPolleRelation", b =>
             {
-                b.HasOne("Exam.Domain.Entities.Voting", "Voting")
-                    .WithMany("VotingAnswers")
-                    .HasForeignKey("VotingId")
-                    .HasConstraintName("FK_VotingAnswers_VotingId")
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("Exam.Domain.Entities.VotingPolles", b =>
-            {
-                b.HasOne("Exam.Domain.Entities.VotingPolle", "Polle")
+                b.HasOne("TeamProject.Domain.Entities.Voting.VotingPolle", "Polle")
                     .WithMany("VotingPolles")
                     .HasForeignKey("PolleId")
                     .HasConstraintName("FK_VotingPolles_PolleId")
                     .IsRequired();
 
-                b.HasOne("Exam.Domain.Entities.VotingAnswers", "VotingAnswer")
+                b.HasOne("TeamProject.Domain.Entities.Voting.VotingAnswer", "VotingAnswer")
                     .WithMany("VotingPolles")
                     .HasForeignKey("VotingAnswerId")
                     .HasConstraintName("FK_VotingPolles_VotingAnswerId")
                     .IsRequired();
 
-                b.HasOne("Exam.Domain.Entities.Voting", "Voting")
+                b.HasOne("TeamProject.Domain.Entities.Voting.Voting", "Voting")
                     .WithMany("VotingPolles")
                     .HasForeignKey("VotingId")
                     .HasConstraintName("FK_VotingPolles_VotingId")
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity("TeamProject.Domain.Entities.Voting.VotingAnswer", b =>
+            {
+                b.HasOne("TeamProject.Domain.Entities.Voting.Voting", "Voting")
+                    .WithMany("VotingAnswers")
+                    .HasForeignKey("VotingId")
+                    .HasConstraintName("FK_VotingAnswers_VotingId")
                     .IsRequired();
             });
 #pragma warning restore 612, 618
