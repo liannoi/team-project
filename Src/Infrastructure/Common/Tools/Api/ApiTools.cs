@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -52,11 +53,10 @@ namespace TeamProject.Infrastructure.Common.Tools.Api
         {
             TEntity result = null;
 
-            await task.ContinueWith(async taskResponse =>
-                result = JsonConvert.DeserializeObject<TEntity>(await (await taskResponse).Content
-                    .ReadAsStringAsync()));
+            await task.ContinueWith(async taskResponse => result = JsonConvert.DeserializeObject<TEntity>(
+                await (await taskResponse).Content.ReadAsStringAsync()));
 
-            return result;
+            return result ?? throw new AuthenticationException();
         }
 
         #endregion

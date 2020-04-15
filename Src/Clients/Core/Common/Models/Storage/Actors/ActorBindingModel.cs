@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TeamProject.Clients.Common.Models.Core.Returnable
+namespace TeamProject.Clients.Common.Models.Storage.Actors
 {
-    public class ActorReturnModel
+    public class ActorBindingModel : ValueObject
     {
         public int ActorId { get; set; }
         public string FirstName { get; set; }

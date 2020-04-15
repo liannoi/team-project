@@ -1,11 +1,12 @@
 ﻿using System;
 using AutoMapper;
 using TeamProject.Application.Common.Mappings;
+using TeamProject.Domain;
 using TeamProject.Domain.Entities.Film;
 
 namespace TeamProject.Application.Storage.Films
 {
-    public class FilmLookupDto : IMapFrom<Film>
+    public class FilmLookupDto : ValueObject, IMapFrom<Film>
     {
         public int FilmId { get; set; }
         public string Title { get; set; }
@@ -15,10 +16,10 @@ namespace TeamProject.Application.Storage.Films
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Film, FilmLookupDto>()
-                .ForMember(x => x.FilmId, opt => opt.MapFrom(f => f.FilmId))
-                .ForMember(x => x.Title, opt => opt.MapFrom(f => f.Title))
-                .ForMember(x => x.PublishYear, opt => opt.MapFrom(f => f.PublishYear))
-                .ForMember(x => x.Description, opt => opt.MapFrom(f => f.Description));
+                .ForMember(d => d.FilmId, opt => opt.MapFrom(s => s.FilmId))
+                .ForMember(d => d.Title, opt => opt.MapFrom(s => s.Title))
+                .ForMember(d => d.PublishYear, opt => opt.MapFrom(s => s.PublishYear))
+                .ForMember(d => d.Description, opt => opt.MapFrom(s => s.Description));
             profile.CreateMap<FilmLookupDto, Film>();
         }
     }

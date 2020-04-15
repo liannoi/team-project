@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TeamProject.Clients.Common.Models.Identity.Returnable
+﻿namespace TeamProject.Clients.Common.Models.Identity.Returnable
 {
-    public class JwtTokenReturnModel
+    public class JwtTokenReturnModel : ValueObject
     {
         public string Token { get; set; }
-
-        public IEnumerable<string> Errors { get; set; }
     }
 }

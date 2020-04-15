@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
+using TeamProject.Clients.WebUI.Controllers.Common;
 
 namespace TeamProject.Clients.WebUI.Controllers
 {

@@ -4,7 +4,7 @@ using TeamProject.Domain.Entities.Film;
 
 namespace TeamProject.Application.Storage.Films
 {
-    internal class FilmRepository : BaseBusinessService<Film, FilmLookupDto>
+    public class FilmRepository : BaseBusinessService<Film, FilmLookupDto>
     {
         public FilmRepository(IDataService<Film> dataService, IMapper mapper) : base(dataService, mapper)
         {

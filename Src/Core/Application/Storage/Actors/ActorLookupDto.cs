@@ -1,11 +1,12 @@
 ﻿using System;
 using AutoMapper;
 using TeamProject.Application.Common.Mappings;
+using TeamProject.Domain;
 using TeamProject.Domain.Entities.Actor;
 
 namespace TeamProject.Application.Storage.Actors
 {
-    public class ActorLookupDto : IMapFrom<Actor>
+    public class ActorLookupDto : ValueObject, IMapFrom<Actor>
     {
         public int ActorId { get; set; }
         public string FirstName { get; set; }
