@@ -14,6 +14,13 @@
         public static string WebApiActorsControllerUpdate => $"{WebApiActorsController}/update";
         public static string WebApiActorsControllerDelete => $"{WebApiActorsController}/delete";
 
+        private static string WebApiGenresController => $"{WebApiAddress}/genres";
+        public static string WebApiGenresControllerGetAll => $"{WebApiGenresController}/getall";
+        public static string WebApiGenresControllerGet => $"{WebApiGenresController}/get";
+        public static string WebApiGenresControllerAdd => $"{WebApiGenresController}/add";
+        public static string WebApiGenresControllerUpdate => $"{WebApiGenresController}/update";
+        public static string WebApiGenresControllerDelete => $"{WebApiGenresController}/delete";
+
         private static string WebApiFilmsController => $"{WebApiAddress}/films";
         public static string WebApiFilmsControllerGetAll => $"{WebApiFilmsController}/getall";
         public static string WebApiFilmsControllerGetAllByActor => $"{WebApiFilmsController}/getallbyactor";

@@ -33,13 +33,14 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
         public async Task<IActionResult> Actors(int currentPage = 1)
         {
             var model = new ActorsBindingModelViewModel {PagingInfo = {CurrentPage = currentPage}};
-            TempData["PageInfo"] = model.PagingInfo.CurrentPage;
+            
 
             model.Collection =
                 (await _authorizeApiTools.FetchAsync<List<ActorBindingModel>>(
                     CommonClientsDefaults.WebApiActorsControllerGetAll, JwtToken))
                 .TakeLast(100)
                 .AsQueryable();
+            //TempData["PageInfo"] = model.PagingInfo.CurrentPage;
 
             return PartialView("_Actors", model);
         }
@@ -55,7 +56,7 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
         {
             if (!ModelState.IsValid) return View(actor);
 
-            await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerAdd, actor);
+            await _authorizeApiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerAdd, actor,JwtToken);
             return RedirectToAction("Actors");
         }
 
