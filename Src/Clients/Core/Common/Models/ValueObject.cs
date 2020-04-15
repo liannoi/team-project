@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TeamProject.Domain
+namespace TeamProject.Clients.Common.Models
 {
     public abstract class ValueObject
     {

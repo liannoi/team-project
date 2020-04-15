@@ -5,6 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="bootstrap" Version="4.4.1" />
 		<PackageReference Include="FluentValidation" Version="8.6.2" />
 		<PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
@@ -24,6 +25,10 @@
 		<ProjectReference Include="..\..\Infrastructure\TeamProject.Infrastructure.csproj" />
 		<ProjectReference Include="..\Core\Common\TeamProject.Clients.Common.csproj" />
 	</ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Pagging\" />
+  </ItemGroup>
 
 
 </Project>

@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
-using TeamProject.Clients.Common.Models.Storage.Actors.Returnable;
+using TeamProject.Clients.Common.Models.Storage.Actors;
 
-namespace TeamProject.Clients.WebUI.Controllers
+namespace TeamProject.Clients.WebUI.Controllers.Common
 {
     public class TestsController : Controller
     {
@@ -20,7 +20,8 @@ namespace TeamProject.Clients.WebUI.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
-            var model = (await _apiTools.FetchAsync<List<ActorBindingModel>>("https://localhost:5001/api/actors/getall"))
+            var model =
+                (await _apiTools.FetchAsync<List<ActorBindingModel>>("https://localhost:5001/api/actors/getall"))
                 .Take(10);
 
             return View(model);

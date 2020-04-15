@@ -37,7 +37,7 @@ namespace TeamProject.Application.Storage
             return Map(await _dataService.RemoveAsync(Map(entity)));
         }
 
-        public IEnumerable<TBEntity> Select()
+        public IQueryable<TBEntity> Select()
         {
             return Map(_dataService.Select());
         }
@@ -64,7 +64,7 @@ namespace TeamProject.Application.Storage
             return _mapper.Map<TBEntity>(entity);
         }
 
-        protected IEnumerable<TBEntity> Map(IQueryable<TEntity> queryable)
+        protected IQueryable<TBEntity> Map(IQueryable<TEntity> queryable)
         {
             return queryable.ProjectTo<TBEntity>(_mapper.ConfigurationProvider);
         }

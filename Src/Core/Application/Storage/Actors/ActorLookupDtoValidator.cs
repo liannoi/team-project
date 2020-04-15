@@ -13,7 +13,8 @@ namespace TeamProject.Application.Storage.Actors
                 .NotNull();
             RuleFor(e => e.Birthday)
                 .NotNull()
-                .GreaterThanOrEqualTo(new DateTime(1900, 01, 01)).WithMessage("Date of birth must be grater than 01.01.1900");
+                .GreaterThanOrEqualTo(new DateTime(1900, 01, 01))
+                .WithMessage("Date of birth must be grater than 01.01.1900");
         }
     }
 }
