@@ -38,7 +38,7 @@ namespace TeamProject.Clients.WebApi.Controllers
         public ActionResult<ActorLookupDto> Get(int id)
         {
             var result = _repository.Find(e => e.ActorId == id).FirstOrDefault();
-            result.Photos = _actorPhotosRepository.Find(e => e.ActorId == id);
+            //result.Photos = _actorPhotosRepository.Find(e => e.ActorId == id);
 
             if (result != null) return Ok(result);
 
@@ -72,14 +72,13 @@ namespace TeamProject.Clients.WebApi.Controllers
             {
                 var model = await _repository.AddAsync(actor);
 
-                await _actorPhotosRepository.AddAsync(new ActorPhotoLookupDto
-                    {ActorId = model.ActorId, Path = "Hello path"});
+                //await _actorPhotosRepository.AddAsync(new ActorPhotoLookupDto{ActorId = model.ActorId, Path = "Hello path"});
                 //foreach(var photo in actor.Photos)
                 //{
                 //    await _actorPhotosRepository.AddAsync(new ActorPhotoLookupDto { ActorId = model.ActorId, Path = photo.Path });
                 //}
 
-                model.Photos = _actorPhotosRepository.Find(e => e.ActorId == model.ActorId);
+                //model.Photos = _actorPhotosRepository.Find(e => e.ActorId == model.ActorId);
                 return Ok(model);
             }
             // TODO: Specify more specific exceptions.

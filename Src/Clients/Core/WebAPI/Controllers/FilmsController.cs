@@ -11,18 +11,18 @@ using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Storage;
 using TeamProject.Application.Storage.Actors;
 using TeamProject.Application.Storage.Films;
-using TeamProject.Domain.Entities.ManyToMany;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class FilmsController : BaseController
     {
-        private readonly IBusinessService<FilmLookupDto> _repository;
         private readonly IBusinessService<ActorFilmLookupDto> _actorFilms;
         private readonly IMapper _mapper;
+        private readonly IBusinessService<FilmLookupDto> _repository;
 
-        public FilmsController(IBusinessService<FilmLookupDto> repository, IBusinessService<ActorFilmLookupDto> actorFilms, IMapper mapper)
+        public FilmsController(IBusinessService<FilmLookupDto> repository,
+            IBusinessService<ActorFilmLookupDto> actorFilms, IMapper mapper)
         {
             _repository = repository;
             _actorFilms = actorFilms;

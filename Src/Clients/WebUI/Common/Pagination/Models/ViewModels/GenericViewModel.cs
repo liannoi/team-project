@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace TeamProject.Clients.WebUI.Common.Pagination.Models.ViewModels
 {
     public abstract class GenericViewModel<TEntity>
     {
-        public PagingInfo PagingInfo { get; set; }
-       
+        protected IQueryable<TEntity> _collection;
+
         public GenericViewModel()
         {
             PagingInfo = new PagingInfo
@@ -18,19 +17,21 @@ namespace TeamProject.Clients.WebUI.Common.Pagination.Models.ViewModels
                 ItemsPerPage = 10
             };
         }
-        protected IQueryable<TEntity> _collection;
+
+        public PagingInfo PagingInfo { get; set; }
+
         public IQueryable<TEntity> Collection
         {
-            get { return _collection; }
+            get => _collection;
             set
             {
                 _collection = value;
-                PagingInfo.TotalItems = (_collection == null) ? 0 : _collection.Count();
+                PagingInfo.TotalItems = _collection == null ? 0 : _collection.Count();
             }
         }
+
         public int EntityId { get; set; }
         public abstract Expression<Func<TEntity, bool>> Predicate { get; }
-        public abstract IEnumerable<TEntity> EntitiesPerPage { get; }      
-
+        public abstract IEnumerable<TEntity> EntitiesPerPage { get; }
     }
 }

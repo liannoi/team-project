@@ -1,22 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - Voting System</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
     @RenderSection("Styles", false)
-    <style>
-        .selected{
-            background-color:cornflowerblue
-        }
-
-    </style>
 </head>
-
 <body>
-
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
         <div class="container">
@@ -38,13 +30,11 @@
                     <li class="nav-item">
                         <a class="nav-link disabled" asp-controller="GenresWebUi" asp-action="Index">Genres</a>
                     </li>
-
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
                     @await Html.PartialAsync("_Identity")
                 </ul>
-
             </div>
 
         </div>

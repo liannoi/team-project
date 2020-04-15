@@ -1,18 +1,6 @@
-﻿@using TeamProject.Clients.WebUI.Common.Pagination.Models.ViewModels
-@using TeamProject.Clients.WebUI.Controllers
-
-@{
+﻿@{
     ViewData["Title"] = "Index";
-}
 
-<h1>Index</h1>
-<div class="actors">
-
-</div>
-
-
-
-@{
     var pageValue = 1;
     if (TempData["PageInfo"] != null)
     {
@@ -21,17 +9,21 @@
     }
 }
 
-@section Scripts
-{
+<h1>Index</h1>
+<div class="actors"></div>
+
+@section Scripts {
     <script>
-        $(function () {
-
-            $('.actors').load('@Url.Action("Actors", "ActorsWebUI")',{ currentPage: @pageValue });
-
-
-            $('body').on('click', '.switchPage', function () {
-                $('.actors').load('@Url.Action("Actors", "ActorsWebUI")', { currentPage: $(this).attr('page-id') });
-            })
+        $(function() {
+            $('.actors').load('@Url.Action("Actors", "ActorsWebUI")', { currentPage: @pageValue });
+            $('body').on('click', '.switchPage',
+                function() {
+                    $('.actors').load('@Url.Action("Actors", "ActorsWebUI")', { currentPage: $(this).attr('page-id') });
+                });
         });
     </script>
+}
+
+@section Styles {
+    <link href="~/css/actors-index.css" rel="stylesheet" />
 }

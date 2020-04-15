@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 
 namespace TeamProject.Infrastructure.Common.Tools.Api
@@ -18,20 +20,39 @@ namespace TeamProject.Infrastructure.Common.Tools.Api
             return await ContinueWithDeserializeAsync<TEntity>(client.GetAsync(uri));
         }
 
-        public Task<TEntity> PostAsync<TEntity>(string uri, ByteArrayContent content, string token)
+        public async Task<TEntity> PostAsync<TEntity>(string uri, ByteArrayContent content, string token)
             where TEntity : class, new()
         {
-            throw new NotImplementedException();
+            if (uri == null) throw new ArgumentNullException(nameof(uri));
+            if (content == null) throw new ArgumentNullException(nameof(content));
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            return await ContinueWithDeserializeAsync<TEntity>(client.PostAsync(uri, content));
         }
 
-        public Task<TEntity> PostAsync<TEntity>(string uri, object value, string token) where TEntity : class, new()
+        public async Task<TEntity> PostAsync<TEntity>(string uri, object value, string token)
+            where TEntity : class, new()
         {
-            throw new NotImplementedException();
+            if (uri == null) throw new ArgumentNullException(nameof(uri));
+            if (value == null) throw new ArgumentNullException(nameof(value));
+
+            var byteContent = new ByteArrayContent(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)));
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            return await ContinueWithDeserializeAsync<TEntity>(client.PostAsync(uri, byteContent));
         }
 
-        public Task DeleteAsync(string uri, string token)
+        public async Task DeleteAsync(string uri, string token)
         {
-            throw new NotImplementedException();
+            if (uri == null) throw new ArgumentNullException(nameof(uri));
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            await client.DeleteAsync(uri);
         }
     }
 }

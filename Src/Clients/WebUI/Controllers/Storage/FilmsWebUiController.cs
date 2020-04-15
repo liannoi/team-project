@@ -30,7 +30,8 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
 
             try
             {
-                fetch = await _authorizeApiTools.FetchAsync<List<FilmBindingModel>>(CommonClientsDefaults.WebApiFilmsControllerGetAll, JwtToken);
+                fetch = await _authorizeApiTools.FetchAsync<List<FilmBindingModel>>(
+                    CommonClientsDefaults.WebApiFilmsControllerGetAll, JwtToken);
             }
             catch (AuthenticationException)
             {
