@@ -23,9 +23,9 @@ namespace TeamProject.Clients.WebApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<ActorLookupDto>> GetAll()
+        public ActionResult<IQueryable<ActorLookupDto>> GetAll()
         {
-            return Ok(_repository.Select());
+            return Ok(_repository.Select().AsQueryable());
         }
 
         [HttpGet("{Id}")]

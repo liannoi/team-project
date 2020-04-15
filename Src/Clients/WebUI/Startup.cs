@@ -27,7 +27,7 @@ namespace TeamProject.Clients.WebUI
             services.AddInfrastructureForJwtAuthentication(Configuration);
             services.AddInfrastructure();
 
-            services.AddControllersWithViews()
+            services.AddMvc()
                 .AddFluentValidation(fv =>
                 {
                     fv.RegisterValidatorsFromAssemblyContaining<RegisterViewModel>();
@@ -60,9 +60,12 @@ namespace TeamProject.Clients.WebUI
             //    return next();
             //});
 
-            app.UseEndpoints(endpoints => endpoints.MapControllerRoute(
-                "default",
-                "{controller=Home}/{action=Index}/{id?}"));
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                                "default",
+                                "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
