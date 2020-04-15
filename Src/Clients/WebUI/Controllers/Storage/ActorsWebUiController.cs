@@ -4,10 +4,13 @@ using System.Security.Authentication;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.Common;
 using TeamProject.Clients.Common.Models.Storage.Actors;
+using TeamProject.Clients.Common.Models.Storage.Films;
 using TeamProject.Clients.WebUI.Controllers.Common;
+using TeamProject.Clients.WebUI.Models;
 
 namespace TeamProject.Clients.WebUI.Controllers.Storage
 {
@@ -45,17 +48,17 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            return View(await PrepareAsync(0));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ActorBindingModel actor)
+        public async Task<IActionResult> Create(ActorViewModel actor)
         {
             if (!ModelState.IsValid) return View(actor);
 
-            await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerAdd, actor);
+            await PrepareAsync(actor);
 
             return RedirectToAction("Index");
         }
@@ -66,14 +69,13 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
             var model = await _apiTools.FetchAsync<ActorBindingModel>(
                 $"{CommonClientsDefaults.WebApiActorsControllerGet}{id}");
 
-            return View(model);
+            return View(await PrepareAsync(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(ActorBindingModel actor)
+        public async Task<IActionResult> Update(ActorViewModel actor)
         {
-            await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerUpdate,
-                actor);
+            await PrepareAsync(actor);
 
             return RedirectToAction("Index");
         }
@@ -85,5 +87,74 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
 
             return Ok();
         }
+
+        #region Helpers
+
+        private async Task<ActorViewModel> PrepareAsync(int id)
+        {
+            ActorBindingModel actor;
+            IEnumerable<int> selectedFilms = null;
+
+            if (id == 0)
+            {
+                actor = new ActorBindingModel();
+            }
+            else
+            {
+                actor = await _apiTools.FetchAsync<ActorBindingModel>($"{CommonClientsDefaults.WebApiActorsControllerGet}/{id}");
+                selectedFilms =
+                    (await _apiTools.FetchAsync<List<FilmBindingModel>>(
+                        $"{CommonClientsDefaults.WebApiFilmsControllerGetAllByActor}/{id}")).Select(x => x.FilmId);
+            }
+
+            return new ActorViewModel
+            {
+                Actor = actor,
+
+                Films = (await _authorizeApiTools.FetchAsync<List<FilmBindingModel>>(CommonClientsDefaults.WebApiFilmsControllerGetAll,JwtToken))
+                    .TakeLast(10)
+                    .Select(x => new SelectListItem
+                    {
+                        Value = x.FilmId.ToString(),
+                        Text = $"{x.Title} ({x.PublishYear.Year})"
+                    }),
+
+                SelectedFilms = selectedFilms
+            };
+        }
+
+        private async Task<IEnumerable<FilmBindingModel>> FetchSelectedFilmsAsync(ActorViewModel model)
+        {
+            var actors = new List<FilmBindingModel>();
+
+            if (model.IsNopeFilms) return actors;
+            if (model.SelectedFilms == null) return actors;
+
+            foreach (var selectedFilmId in model.SelectedFilms)
+                actors.Add(await _apiTools.FetchAsync<FilmBindingModel>($"{CommonClientsDefaults.WebApiFilmsControllerGet}/{selectedFilmId}"));
+
+            return actors;
+        }
+
+        private async Task PrepareAsync(ActorViewModel model)
+        {
+            var selectedFilms = await FetchSelectedFilmsAsync(model);
+
+            if (model.Actor.ActorId == 0)
+                await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerAdd,
+                    new { model.Actor.FirstName, model.Actor.LastName, model.Actor.Birthday, Films = selectedFilms });
+            else
+                await _apiTools.PostAsync<ActorBindingModel>(CommonClientsDefaults.WebApiActorsControllerUpdate,
+                    new
+                    {
+                        model.Actor.ActorId,
+                        model.Actor.FirstName,
+                        model.Actor.LastName,
+                        model.Actor.Birthday,
+                        Films = selectedFilms
+                    });
+        }
+
+        #endregion
     }
 }

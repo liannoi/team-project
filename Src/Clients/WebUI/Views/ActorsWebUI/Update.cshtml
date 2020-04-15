@@ -1,39 +1,39 @@
-﻿@model TeamProject.Clients.Common.Models.Storage.Actors.ActorBindingModel
+﻿@model TeamProject.Clients.WebUI.Models.ActorViewModel
 
 @{
     ViewData["Title"] = "UpdateActor";
 }
-<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
 <h1>UpdateActor</h1>
 
 <h4>ActorReturnModel</h4>
-<hr />
+<hr/>
 <div class="row bg-dark" id="actorUpdate_id">
     <div class="col-md-4 col-lg-4 col-sm-4 col-xl-4">
         <form asp-action="UpdateActor">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" hidden="hidden">
 
-                <input asp-for="ActorId" class="form-control" />
+                <input asp-for="Actor.ActorId" class="form-control"/>
 
             </div>
             <div class="form-group ">
-                <label asp-for="FirstName" class="control-label text-light"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label asp-for="Actor.FirstName" class="text-light"></label>
+                <input asp-for="Actor.FirstName" class="form-control"/>
+                <span asp-validation-for="Actor.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label text-light"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <label asp-for="Actor.LastName" class="text-light"></label>
+                <input asp-for="Actor.LastName" class="form-control"/>
+                <span asp-validation-for="Actor.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Birthday" class="control-label text-light"></label>
-                <input asp-for="Birthday" class="form-control" />
-                <span asp-validation-for="Birthday" class="text-danger"></span>
+                <label asp-for="Actor.Birthday" class="text-light"></label>
+                <input asp-for="Actor.Birthday" class="form-control"/>
+                <span asp-validation-for="Actor.Birthday" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-outline-info" />
+                <input type="submit" value="Save" class="btn btn-outline-info"/>
             </div>
         </form>
     </div>
@@ -44,5 +44,5 @@
 </div>
 
 @section Styles {
-    <link href="~/css/actors-update.css" rel="stylesheet" />
+    <link href="~/css/actors-update.css" rel="stylesheet"/>
 }

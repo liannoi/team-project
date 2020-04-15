@@ -6,9 +6,24 @@ using TeamProject.Application.Storage.ActorsPhotos;
 using TeamProject.Application.Storage.Films;
 using TeamProject.Domain;
 using TeamProject.Domain.Entities.Actor;
+using TeamProject.Domain.Entities.ManyToMany;
 
 namespace TeamProject.Application.Storage.Actors
 {
+    public class ActorFilmLookupDto : IMapFrom<ActorsFilms>
+    {
+        public int ActorId { get; set; }
+        public int FilmId { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<ActorsFilms, ActorFilmLookupDto>()
+                .ForMember(d => d.FilmId, opt => opt.MapFrom(s => s.FilmId))
+                .ForMember(d => d.ActorId, opt => opt.MapFrom(s => s.ActorId));
+            profile.CreateMap<ActorFilmLookupDto, ActorsFilms>();
+        }
+    }
+
     public class ActorLookupDto : ValueObject, IMapFrom<Actor>
     {
         public int ActorId { get; set; }

@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using TeamProject.Application.Common.Interfaces.Infrastructure;
 using TeamProject.Clients.Common;
 using TeamProject.Clients.Common.Models.Storage.Films;
+using TeamProject.Clients.WebUI.Controllers.Common;
 
 namespace TeamProject.Clients.WebUI.Controllers.Storage
 {
     [Authorize(Roles = "Administrator")]
-    public class FilmsWebUiController : Controller
+    public class FilmsWebUiController : BaseController
     {
         private readonly IApiTools _apiTools;
         private readonly IAuthorizeApiTools _authorizeApiTools;
@@ -29,9 +30,7 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
 
             try
             {
-                fetch = await _authorizeApiTools.FetchAsync<List<FilmBindingModel>>(
-                    CommonClientsDefaults.WebApiFilmsControllerGetAll,
-                    HttpContext.Request.Cookies[MvcClientDefaults.InCookiesJwtTokenName]);
+                fetch = await _authorizeApiTools.FetchAsync<List<FilmBindingModel>>(CommonClientsDefaults.WebApiFilmsControllerGetAll, JwtToken);
             }
             catch (AuthenticationException)
             {

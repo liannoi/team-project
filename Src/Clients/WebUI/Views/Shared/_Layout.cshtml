@@ -20,12 +20,19 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex">
-                    <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="ActorsWebUI" asp-action="Actors">Actors</a>
-                            </li>
-                        </ul>
+            <div class="navbar-collapse collapse d-sm-inline-flex">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="ActorsWebUi" asp-action="Index">Actors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="FilmsWebUi" asp-action="Index">Films</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" asp-controller="GenresWebUi" asp-action="Index">Genres</a>
+                    </li>
+
+                </ul>
 
                 <ul class="navbar-nav ml-auto">
                     @await Html.PartialAsync("_Identity")
