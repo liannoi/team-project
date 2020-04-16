@@ -64,7 +64,7 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
             }
             catch (AuthenticationException e)
             {
-                _logger.LogWarning(e.Message);
+                _logger.LogWarning(e, e.Message);
                 throw;
             }
 
