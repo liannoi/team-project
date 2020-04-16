@@ -4,7 +4,7 @@
     var pageValue = 1;
     if (TempData["PageInfo"] != null)
     {
-        pageValue = (int)TempData["PageInfo"];
+        pageValue = (int) TempData["PageInfo"];
         //pageValue = ((ActorsBindingModelViewModel)TempData["PageInfo"]).PagingInfo.CurrentPage;
     }
 }
@@ -16,7 +16,8 @@
     <script>
         $(function() {
             $('.actors').load('@Url.Action("Actors", "ActorsWebUI")', { currentPage: @pageValue });
-            $('body').on('click', '.switchPage',
+            $('body').on('click',
+                '.switchPage',
                 function() {
                     $('.actors').load('@Url.Action("Actors", "ActorsWebUI")', { currentPage: $(this).attr('page-id') });
                 });
@@ -25,5 +26,5 @@
 }
 
 @section Styles {
-    <link href="~/css/actors-index.css" rel="stylesheet" />
+    <link href="~/css/actors-index.css" rel="stylesheet"/>
 }

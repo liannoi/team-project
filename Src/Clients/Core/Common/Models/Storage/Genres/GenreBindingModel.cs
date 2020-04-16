@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TeamProject.Clients.Common.Models.Storage.Genres
+﻿namespace TeamProject.Clients.Common.Models.Storage.Genres
 {
     public class GenreBindingModel
     {

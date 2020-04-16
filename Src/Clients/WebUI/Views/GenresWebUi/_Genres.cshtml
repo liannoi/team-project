@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TeamProject.Clients.Common.Models.Storage.Genres.GenreBindingModel>
+
+<p>
+    <a asp-action="CreateGenre" class="btn btn-dark">Create New</a>
+</p>
+<div class="row mt-3">
+    <div class="offset-md-2"></div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Title")
+                </th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "UpdateGenre", new {id = item.GenreId}, new {@class = "btn btn-info"})
+                        <a data-id="@item.GenreId" class="btn btn-danger btn-cmd-delete" asp-controller="GenresWebUi" asp-action="DeleteGenre">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="offset-md-2"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="~/js/softDeleter.js"></script>
+<script src="~/js/actors-index.js"></script>
