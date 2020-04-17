@@ -28,5 +28,10 @@
         public static string WebApiFilmsControllerCreate => $"{WebApiFilmsController}/create";
         public static string WebApiFilmsControllerUpdate => $"{WebApiFilmsController}/update";
         public static string WebApiFilmsControllerDelete => $"{WebApiFilmsController}/delete";
+
+        private static string WebApiActorsPhotoController => $"{WebApiAddress}/ActorPhoto";
+        public static string WebApiApiActorsPhotoControllerPhotoUpload => $"{WebApiActorsPhotoController}/PhotoUpload";
+        public static string WebApiApiActorsPhotoControllerGetAllByActor => $"{WebApiActorsPhotoController}/GetAllByActor";
+        public static string WebApiApiActorsPhotoControllerGet => $"{WebApiActorsPhotoController}/get";
     }
 }
