@@ -12,7 +12,13 @@
         <form asp-action="UpdateActor">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" hidden="hidden">
+<<<<<<< HEAD
                 <input asp-for="ActorId" class="form-control" />
+=======
+
+                <input asp-for="ActorId" class="form-control" />
+
+>>>>>>> 08dedb12fc089e3d8d6f72018b82d2b470116f8f
             </div>
             <div class="form-group ">
                 <label asp-for="FirstName" class="text-light"></label>
@@ -31,7 +37,13 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-outline-info" />
+<<<<<<< HEAD
                 <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+=======
+            </div>
+            <div class="form-group">
+                <input type="button" value="Add photo" asp-controller="actorsWebUi" asp-action="AddPhoto"data-id="@Model.ActorId" class="btn btn-outline-info" />
+>>>>>>> 08dedb12fc089e3d8d6f72018b82d2b470116f8f
             </div>
         </form>
     </div>

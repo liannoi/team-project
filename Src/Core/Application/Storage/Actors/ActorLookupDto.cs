@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using TeamProject.Application.Common.Mappings;
+using TeamProject.Application.Storage.ActorsPhotos;
 using TeamProject.Domain;
 using TeamProject.Domain.Entities.Actor;
 
@@ -12,6 +14,7 @@ namespace TeamProject.Application.Storage.Actors
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Birthday { get; set; }
+        public ICollection<ActorPhotoLookupDto> Photos { get; set; }
 
         public void Mapping(Profile profile)
         {

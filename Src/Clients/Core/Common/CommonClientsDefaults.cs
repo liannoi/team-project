@@ -14,6 +14,13 @@
         public static string WebApiActorsControllerUpdate => $"{WebApiActorsController}/update";
         public static string WebApiActorsControllerDelete => $"{WebApiActorsController}/delete";
 
+        private static string WebApiGenresController => $"{WebApiAddress}/genres";
+        public static string WebApiGenresControllerGetAll => $"{WebApiGenresController}/getall";
+        public static string WebApiGenresControllerGet => $"{WebApiGenresController}/get";
+        public static string WebApiGenresControllerAdd => $"{WebApiGenresController}/add";
+        public static string WebApiGenresControllerUpdate => $"{WebApiGenresController}/update";
+        public static string WebApiGenresControllerDelete => $"{WebApiGenresController}/delete";
+
         private static string WebApiFilmsController => $"{WebApiAddress}/films";
         public static string WebApiFilmsControllerGetAll => $"{WebApiFilmsController}/getall";
         public static string WebApiFilmsControllerGetAllByActor => $"{WebApiFilmsController}/getallbyactor";
@@ -21,5 +28,10 @@
         public static string WebApiFilmsControllerCreate => $"{WebApiFilmsController}/create";
         public static string WebApiFilmsControllerUpdate => $"{WebApiFilmsController}/update";
         public static string WebApiFilmsControllerDelete => $"{WebApiFilmsController}/delete";
+
+        private static string WebApiActorsPhotoController => $"{WebApiAddress}/ActorPhoto";
+        public static string WebApiApiActorsPhotoControllerPhotoUpload => $"{WebApiActorsPhotoController}/PhotoUpload";
+        public static string WebApiApiActorsPhotoControllerGetAllByActor => $"{WebApiActorsPhotoController}/GetAllByActor";
+        public static string WebApiApiActorsPhotoControllerGet => $"{WebApiActorsPhotoController}/get";
     }
 }
