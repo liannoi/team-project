@@ -1,31 +1,31 @@
 ﻿@model IEnumerable<TeamProject.Clients.Common.Models.Storage.Films.FilmBindingModel>
-
 @{
     ViewData["Title"] = "Films";
 }
 
-<div class="row mb-3">
-    <div class="col-md-12">
-        <h2>Films</h2>
-        <hr>
+    <div class="row mb-3">
+        <div class="offset-md-5"></div>
+        <div class="col-md-3">
+            <h2>Films</h2>
+        </div>
     </div>
-</div>
 
-<div class="row mb-4">
-    <div class="col-md-2">
-        <a class="btn btn-success disabled" asp-controller="Films" asp-action="CreateOrUpdate" asp-route-id="0">New...</a>
+    <div class="row mb-4">
+        <div class="offset-md-5"></div>
+        <div class="col-md-2">
+            <a class="btn btn-outline-success disabled" asp-controller="Films" asp-action="CreateOrUpdate" asp-route-id="0">New...</a>
+        </div>
     </div>
-</div>
 
 <div class="row">
     <div class="col-md-12">
         <table class="table table-bordered">
             <thead class="thead-light">
             <tr>
-                <th>Name</th>
+                <th class="tBorderTopLeft">Name</th>
                 <th>Year</th>
                 <th>Description</th>
-                <th>Actions</th>
+                <th class="tBorderTopRight">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -47,7 +47,7 @@
                         @shortDescription
                     </td>
                     <td>
-                        <a class="btn btn-secondary disabled" asp-controller="Films" asp-action="CreateOrUpdate" asp-route-id="@item.FilmId">Edit...</a>
+                        <a class="btn btn-outline-info disabled" asp-controller="Films" asp-action="CreateOrUpdate" asp-route-id="@item.FilmId">Edit...</a>
                         <a data-id="@item.FilmId" class="btn btn-outline-danger btn-cmd-delete disabled" asp-controller="Films" asp-action="DeleteActor">Delete</a>
                     </td>
                 </tr>
@@ -57,8 +57,10 @@
     </div>
 </div>
 
-@section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="~/js/softDeleter.js"></script>
     <script src="~/js/films-index.js"></script>
+
+@section Styles{ 
+    <link href="~/css/film/films-index.css" rel="stylesheet" />
 }
