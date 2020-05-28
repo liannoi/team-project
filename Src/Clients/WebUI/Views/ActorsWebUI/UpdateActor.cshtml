@@ -3,42 +3,51 @@
     ViewData["Title"] = "UpdateActor";
 }
 
-<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
-<h1>UpdateActor</h1>
+<h2>UpdateActor</h2>
 
 <h4>ActorReturnModel</h4>
-<hr/>
+<hr />
 <div class="row bg-dark" id="actorUpdate_id">
-    <div class="col-md-4 col-lg-4 col-sm-4 col-xl-4">
+    <div class="col-md-4">
         <form asp-action="UpdateActor">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" hidden="hidden">
+<<<<<<< HEAD
+                <input asp-for="ActorId" class="form-control" />
+=======
 
-                <input asp-for="ActorId" class="form-control"/>
+                <input asp-for="ActorId" class="form-control" />
 
+>>>>>>> 08dedb12fc089e3d8d6f72018b82d2b470116f8f
             </div>
             <div class="form-group ">
                 <label asp-for="FirstName" class="text-light"></label>
-                <input asp-for="FirstName" class="form-control"/>
+                <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LastName" class="text-light"></label>
-                <input asp-for="LastName" class="form-control"/>
+                <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Birthday" class="text-light"></label>
-                <input asp-for="Birthday" class="form-control"/>
+                <input asp-for="Birthday" class="form-control" />
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-outline-info"/>
+                <input type="submit" value="Save" class="btn btn-outline-info" />
+<<<<<<< HEAD
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+=======
+            </div>
+            <div class="form-group">
+                <input type="button" value="Add photo" asp-controller="actorsWebUi" asp-action="AddPhoto"data-id="@Model.ActorId" class="btn btn-outline-info" />
+>>>>>>> 08dedb12fc089e3d8d6f72018b82d2b470116f8f
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Actors">Back to List</a>
-</div>
+@section Styles{
+    <link href="~/css/actor/actor-updateActor.css" rel="stylesheet" />
+}

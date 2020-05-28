@@ -1,0 +1,9 @@
+﻿.selected {
+    background-color: #a2b9d3;
+    color: black;
+    border: solid 1px black;
+}
+
+.switchPage {
+    margin-right:20px;
+}

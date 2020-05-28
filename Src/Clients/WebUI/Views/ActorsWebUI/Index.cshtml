@@ -1,6 +1,4 @@
 ﻿@{
-    ViewData["Title"] = "Index";
-
     var pageValue = 1;
     if (TempData["PageInfo"] != null)
     {
@@ -9,21 +7,24 @@
     }
 }
 
-<h1>Index</h1>
 <div class="actors"></div>
 
 @section Scripts {
+    <script src="~/js/pageSwitcher.js"></script>
     <script>
         $(function() {
-            $('.actors').load('@Url.Action("Actors", "ActorsWebUI")', { currentPage: @pageValue });
-            $('body').on('click', '.switchPage',
-                function() {
-                    $('.actors').load('@Url.Action("Actors", "ActorsWebUI")', { currentPage: $(this).attr('page-id') });
-                });
-        });
+        let switchPage = new SwitchPage('.actors', '/ActorsWebUi/Actors',@pageValue);
+        switchPage.pageLoad(@pageValue);
+        switchPage.switcher('.switchPage', 'page-id');
+    })
     </script>
 }
 
 @section Styles {
+<<<<<<< HEAD
+    <link href="~/css/actor/actors-index.css" rel="stylesheet" />
+}
+=======
     <link href="~/css/actors-index.css" rel="stylesheet" />
 }
+>>>>>>> 08dedb12fc089e3d8d6f72018b82d2b470116f8f
