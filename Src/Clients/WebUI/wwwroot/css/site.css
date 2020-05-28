@@ -47,7 +47,7 @@ html {
 }
 
 body {
-    background-image: repeating-linear-gradient(#65d3d3, #eae5e5, #00ffff);
+    background-image: repeating-linear-gradient(#9cb7d5, #eae5e5, #a2b9d3);
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }

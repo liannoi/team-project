@@ -7,62 +7,57 @@
 <div class="row mb-3">
     <div class="col-md-12">
         <h2>Create actor</h2>
-        <hr>
     </div>
 </div>
 
-<div class="row mb-3">
+<div class="row mb-3 bg-dark" id="actorCreate_id">
     <div class="col-md-12">
-        <form asp-action="CreateActor">
-
+        <form asp-action="CreateAcroe">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             @Html.HiddenFor(model => model.ActorId)
-
             <div class="form-row">
-                <div class="col-md-4 mr-5">
+                <div class="col-md-3 mr-5">
                     <div class="form-group">
-                        <input asp-for="FirstName" class="form-control mb-4" placeholder="First Name"/>
+                        <label asp-for="FirstName" class="text-light"></label>
+                        <input asp-for="FirstName" class="form-control mb-4" placeholder="First Name" />
                         <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <input asp-for="LastName" class="form-control mb-4" placeholder="Last Name"/>
+                        <label asp-for="LastName" class="text-light"></label>
+                        <input asp-for="LastName" class="form-control mb-4" placeholder="Last Name" />
                         <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Birthday"></label>
-                        <input asp-for="Birthday" class="form-control mb-4"/>
+                        <input asp-for="Birthday" class="form-control mb-4" />
                         <span asp-validation-for="Birthday" class="text-danger"></span>
                     </div>
                 </div>
 
-                @*<div class="col-md-5">
-                    <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" asp-for="IsNopeFilms">
-                        <label class="custom-control-label" asp-for="IsNopeFilms">Don't specify films.</label>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.SelectedFilms, "Films")
-                        @Html.ListBoxFor(model => model.SelectedFilms, Model.Films, new {@class = "form-control", size = "7"})
-                    </div>
-                </div>*@
+                @*@*<div class="col-md-5">
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" asp-for="IsNopeFilms">
+                            <label class="custom-control-label" asp-for="IsNopeFilms">Don't specify films.</label>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SelectedFilms, "Films")
+                            @Html.ListBoxFor(model => model.SelectedFilms, Model.Films, new {@class = "form-control", size = "7"})
+                        </div>
+                    </div>*@
             </div>
 
             <div class="form-group mt-4">
-                <input type="submit" value="Save" class="btn btn-primary"/>
+                <input type="submit" value="Save" class="btn btn-outline-success" />
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <a asp-action="Index">Back to List</a>
-    </div>
-</div>
-
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+@section Styles {
+    <link href="~/css/actor/actors-createActor.css" rel="stylesheet" />
 }

@@ -12,7 +12,7 @@ using TeamProject.Application.Storage.ActorsPhotos;
 
 namespace TeamProject.Clients.WebApi.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+   // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ActorsController : BaseController
     {
         private readonly IBusinessService<ActorPhotoLookupDto> _actorPhotosRepository;
@@ -38,12 +38,12 @@ namespace TeamProject.Clients.WebApi.Controllers
         public ActionResult<ActorLookupDto> Get(int id)
         {
             var result = _repository.Find(e => e.ActorId == id).FirstOrDefault();
-            //result.Photos = _actorPhotosRepository.Find(e => e.ActorId == id);
+            var photoResult = _actorPhotosRepository.Find(e => e.ActorId == id).ToList();
 
             if (result != null) return Ok(result);
 
             return BadRequest("Not found");
-        }
+        }        
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
