@@ -1,0 +1,11 @@
+﻿@model int
+
+
+<h1>AddPhoto</h1>
+
+@using (Html.BeginForm("UploadPhoto", "actorsWebUi", FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+    <input type="text" name="id" value="@Model" hidden/>
+    <input type="file" name="photosUploadMulti" multiple/>
+    <input type="submit" name="Add" id="Add" value="Add"/>
+}

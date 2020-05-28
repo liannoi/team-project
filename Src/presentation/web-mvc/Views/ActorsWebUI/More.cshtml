@@ -1,0 +1,53 @@
+﻿@model TeamProject.Clients.Common.Models.Storage.Actors.ActorBindingModel
+@{
+    ViewData["Title"] = "More";
+}
+
+<h1>More</h1>
+
+<div>
+    <h4>ActorBindingModel</h4>
+    <hr/>
+    <dl class="row">
+
+
+        <dd class="col-sm-10" hidden="hidden">
+            @Html.DisplayFor(model => model.ActorId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+        @{
+            if (Model.Photos != null)
+            {
+                foreach (var item in Model.Photos)
+                {
+                    // var tmp = $"{System.IO.Directory.GetCurrentDirectory()}{item.Path}";
+
+                    <img src="@Url.Content("~/Images/" + item.Path)" height="100%" width="300px"/>
+                }
+            }
+        }
+
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("AddPhoto", "AddPhoto", new {id = Model.ActorId})
+    @Html.ActionLink("Edit", "Edit", new {id = Model.ActorId})
+    <a asp-action="Index">Back to List</a>
+</div>

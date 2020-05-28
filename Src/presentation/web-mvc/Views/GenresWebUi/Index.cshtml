@@ -1,0 +1,44 @@
+﻿@{
+    var pageValue = 1;
+    if (TempData["PageInfo"] != null)
+    {
+        pageValue = (int) TempData["PageInfo"];
+        //pageValue = ((ActorsBindingModelViewModel)TempData["PageInfo"]).PagingInfo.CurrentPage;
+    }
+}
+
+<div id="genres">
+
+</div>
+
+@section Scripts{
+
+    <script>
+    class SwitchPage {
+        constructor(placeToLoad, UrlAction,paramName,paramValue) {
+            this.placeToLoad = placeToLoad;
+            this.UrlAction = UrlAction;
+            this.paramName = paramName;
+            this.paramValue = paramValue;
+        }
+        PageLoad() {
+            this.placeToLoad.load(this.UrlAction, { paramName: paramValue });
+        }
+        Switcher(selector,attr) {
+            $('body').on('click', selector,
+                this.placeToLoad.load(this.UrlAction, { paramName: $(this).attr(attr) }));
+        }
+    }
+
+
+
+
+    $(function() {
+
+        SwitchPage = new SwitchPage('.actors', '/ActorsWebUi/Actors', currentPage,@pageValue);
+        SwitchPage.PageLoad();
+        SwitchPage.Switcher('.switchPage', 'page-id');
+    })
+</script>
+
+}
