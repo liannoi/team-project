@@ -14,5 +14,5 @@ class SwitchPage {
         $('body').on('click', selector, function () {
             $(self.placeToLoad).load(self.urlAction, { currentPage: $(this).attr(attr) })
         })
-    };
+    }
 }
