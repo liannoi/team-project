@@ -1,9 +1,12 @@
+using System.IO;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using TeamProject.Application;
 using TeamProject.Application.Storage.Actors;
@@ -64,6 +67,13 @@ namespace TeamProject.Clients.WebApi
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider =
+                    new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"actorsPhotosDir")),
+                RequestPath = new PathString("/actorsPhotosDir")
+            });
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

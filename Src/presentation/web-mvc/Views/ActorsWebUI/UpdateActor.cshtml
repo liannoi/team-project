@@ -12,15 +12,9 @@
         <form asp-action="UpdateActor">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" hidden="hidden">
-                <<<<<<< HEAD
                 <input asp-for="ActorId" class="form-control"/>
-                =======
-
-                <input asp-for="ActorId" class="form-control"/>
-
-                >>>>>>> 08dedb12fc089e3d8d6f72018b82d2b470116f8f
             </div>
-            <div class="form-group ">
+            <div class="form-group">
                 <label asp-for="FirstName" class="text-light"></label>
                 <input asp-for="FirstName" class="form-control"/>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -36,19 +30,18 @@
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-outline-info"/>
-                <<<<<<< HEAD
-                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
-                =======
+                <a asp-controller="ActorsWebUI" asp-action="AddPhoto" asp-route-id="@Model.ActorId" data-id="@Model.ActorId" class="btn btn-outline-info">Add Photo</a>
             </div>
             <div class="form-group">
-                <input type="button" value="Add photo" asp-controller="actorsWebUi" asp-action="AddPhoto"data-id="@Model.ActorId" class="btn btn-outline-info"/>
-                >>>>>>> 08dedb12fc089e3d8d6f72018b82d2b470116f8f
+                <input type="submit" value="Save" class="btn btn-outline-info"/>
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-@section Styles{
+@* ReSharper disable once Razor.SectionNotResolved *@
+
+@section Styles {
     <link href="~/css/actor/actor-updateActor.css" rel="stylesheet"/>
 }

@@ -10,12 +10,12 @@
     </div>
 </div>
 
-<div class="row mb-4">
+@*<div class="row mb-4">
     <div class="offset-md-5"></div>
     <div class="col-md-2">
-        <a class="btn btn-outline-success disabled" asp-controller="Films" asp-action="CreateOrUpdate" asp-route-id="0">New...</a>
+        <a class="btn btn-outline-success disabled" asp-controller="FilmsWebUI" asp-action="CreateOrUpdate" asp-route-id="0">New...</a>
     </div>
-</div>
+</div>*@
 
 <div class="row">
     <div class="col-md-12">
@@ -46,10 +46,11 @@
                         }
                         @shortDescription
                     </td>
-                    <td>
-                        <a class="btn btn-outline-info disabled" asp-controller="Films" asp-action="CreateOrUpdate" asp-route-id="@item.FilmId">Edit...</a>
+                    <td></td>
+                    @*<td>
+                        <a class="btn btn-outline-info disabled" asp-controller="FilmsWebUI" asp-action="CreateOrUpdate" asp-route-id="@item.FilmId">Edit...</a>
                         <a data-id="@item.FilmId" class="btn btn-outline-danger btn-cmd-delete disabled" asp-controller="Films" asp-action="DeleteActor">Delete</a>
-                    </td>
+                    </td>*@
                 </tr>
             }
             </tbody>
@@ -59,8 +60,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="~/js/softDeleter.js"></script>
-<script src="~/js/films-index.js"></script>
+@*<script src="~/js/films-index.js"></script>*@
 
-@section Styles{
+@* ReSharper disable once Razor.SectionNotResolved *@
+
+@section Styles {
     <link href="~/css/film/films-index.css" rel="stylesheet"/>
 }

@@ -54,7 +54,7 @@ namespace TeamProject.Clients.WebApi.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var photo = _actorPhotosRepository.Find(e => e.PhotoId == id).FirstOrDefault();
-            var path = $"{AppDomain.CurrentDomain.BaseDirectory}/../../../actorsPhotosDir/{photo.Path}";
+            var path = $"{AppDomain.CurrentDomain.BaseDirectory}../../../actorsPhotosDir/{photo.Path}";
             var result = System.IO.File.OpenRead(path);
             return await Task.Run(() => File(result, "image/jpeg"));
         }

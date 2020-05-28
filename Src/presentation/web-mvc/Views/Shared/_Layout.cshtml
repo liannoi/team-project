@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - Voting System</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
-    @RenderSection("Styles", false)
+    @await RenderSectionAsync("Styles", false)
 </head>
 <body>
 <header>
@@ -22,13 +22,10 @@
             <div class="navbar-collapse collapse d-sm-inline-flex">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="ActorsWebUi" asp-action="Index">Actors</a>
+                        <a class="nav-link" asp-controller="ActorsWebUI" asp-action="Index">Actors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="FilmsWebUi" asp-action="Index">Films</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" asp-controller="GenresWebUi" asp-action="Index">Genres</a>
+                        <a class="nav-link" asp-controller="FilmsWebUI" asp-action="Index">Films</a>
                     </li>
                 </ul>
 
@@ -36,7 +33,6 @@
                     @await Html.PartialAsync("_Identity")
                 </ul>
             </div>
-
         </div>
     </nav>
 </header>
@@ -47,12 +43,13 @@
     </main>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <div class="row pb-3 text-muted text-center">
-            <div class="col-md-12">
-                <hr>
-                2020 - Team Project
+<footer class="py-2 pt-2 border-top footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md">
+                <p class="text-uppercase text-center text-dark">
+                    2020 - Team Project
+                </p>
             </div>
         </div>
     </div>
@@ -62,7 +59,7 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-@RenderSection("Scripts", false)
+@await RenderSectionAsync("Scripts", false)
 
 </body>
 </html>

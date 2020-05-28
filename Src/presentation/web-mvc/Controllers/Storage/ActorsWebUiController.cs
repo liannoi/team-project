@@ -16,17 +16,15 @@ using TeamProject.Clients.WebUI.Controllers.Common;
 namespace TeamProject.Clients.WebUI.Controllers.Storage
 {
     [Authorize(Roles = "Administrator")]
-    public class ActorsWebUiController : BaseController
+    public class ActorsWebUIController : BaseController
     {
         private readonly IApiTools _apiTools;
         private readonly IAuthorizeApiTools _authorizeApiTools;
-        private HttpClient httpClient;
 
-        public ActorsWebUiController(IApiTools apiTools, IAuthorizeApiTools authorizeApiTools)
+        public ActorsWebUIController(IApiTools apiTools, IAuthorizeApiTools authorizeApiTools)
         {
             _apiTools = apiTools;
             _authorizeApiTools = authorizeApiTools;
-            httpClient = new HttpClient();
         }
 
         [HttpGet]
@@ -46,7 +44,6 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
                     CommonClientsDefaults.WebApiActorsControllerGetAll, JwtToken))
                 .TakeLast(100)
                 .AsQueryable();
-            //TempData["PageInfo"] = model.PagingInfo.CurrentPage;
 
             return PartialView("Actors", model);
         }
@@ -146,9 +143,7 @@ namespace TeamProject.Clients.WebUI.Controllers.Storage
                 //formDataContent, JwtToken);
             }
 
-            return
-                RedirectToAction(
-                    "Index"); //return RedirectToAction("More",id);//($"{ CommonClientsDefaults.WebApiActorsControllerGet}/{id}");
+            return RedirectToAction("Index");
         }
     }
 }

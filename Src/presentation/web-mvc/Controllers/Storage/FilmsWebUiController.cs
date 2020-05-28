@@ -12,12 +12,12 @@ using TeamProject.Clients.WebUI.Controllers.Common;
 namespace TeamProject.Clients.WebUI.Controllers.Storage
 {
     [Authorize(Roles = "Administrator")]
-    public class FilmsWebUiController : BaseController
+    public class FilmsWebUIController : BaseController
     {
         private readonly IApiTools _apiTools;
         private readonly IAuthorizeApiTools _authorizeApiTools;
 
-        public FilmsWebUiController(IApiTools apiTools, IAuthorizeApiTools authorizeApiTools)
+        public FilmsWebUIController(IApiTools apiTools, IAuthorizeApiTools authorizeApiTools)
         {
             _apiTools = apiTools;
             _authorizeApiTools = authorizeApiTools;

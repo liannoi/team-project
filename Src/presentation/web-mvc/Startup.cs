@@ -1,11 +1,8 @@
-using System.IO;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using TeamProject.Clients.Common.Models.Identity.ViewModels;
 using TeamProject.Clients.WebUI.Models;
@@ -49,12 +46,12 @@ namespace TeamProject.Clients.WebUI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseStaticFiles(new StaticFileOptions
+            /*app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider =
                     new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "actorsPhotosDir")),
                 RequestPath = new PathString("/Images")
-            });
+            });*/
 
             app.UseRouting();
 

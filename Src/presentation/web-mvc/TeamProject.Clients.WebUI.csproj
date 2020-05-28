@@ -22,4 +22,15 @@
 	  <ProjectReference Include="..\..\system\infrastructure\TeamProject.Infrastructure.csproj" />
 	  <ProjectReference Include="..\web-mvc-services\TeamProject.Clients.Common.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="Views\Tests\Index.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="wwwroot\css\home\home-index.css">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
 </Project>

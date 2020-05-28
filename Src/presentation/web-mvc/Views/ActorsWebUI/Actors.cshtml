@@ -1,70 +1,57 @@
 ﻿@using TeamProject.Clients.WebUI.Common.Pagination
 @model TeamProject.Clients.WebUI.Common.Pagination.Models.ViewModels.ActorsBindingModelViewModel
 
-<div class="row mb-5">
-    <div class="offset-md-5"></div>
-    <div class="col-md-3">
-        <h2>Actor</h2>
-        <a asp-controller="ActorsWebUi" asp-action="CreateActor" class="btn">
+<div class="row mb-4 mt-5">
+    <div class="col-sm-12">
+        <h2 class="text-center">Actor</h2>
+        <a asp-controller="ActorsWebUI" asp-action="CreateActor" class="btn">
             <img height="40" src="~/icons/iconAdd.png">
         </a>
     </div>
 </div>
 
-<div class="row mb-3">
-    <div class="offset-md-3"></div>
-    <div class="col-md-6">
+<div class="row mb-4">
+    <div class="col-sm-12">
         <table class="table table-bordered">
             <thead class="thead-light">
             <tr>
-                <th id="tBorderLeftTop">
-                    First Name
-                </th>
-                <th>
-                    Last name
-                </th>
-                <th class="tBorderRightTop">
-                    Actions
-                </th>
+                <th>First Name</th>
+                <th>Last name</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach (var item in Model.EntitiesPerPage)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
                     <td>
                         @Html.ActionLink("Edit", "UpdateActor", new {id = item.ActorId}, new {@class = "btn btn-outline-primary"})
                         @Html.ActionLink("More", "More", new {id = item.ActorId}, new {@class = "btn btn-outline-info"})
-                        <a data-id="@item.ActorId" class="btn btn-outline-danger btn-cmd-delete" asp-controller="ActorsWebUi" asp-action="DeleteActor">Delete</a>
+                        <a data-id="@item.ActorId" class="btn btn-outline-danger btn-cmd-delete" asp-controller="ActorsWebUI" asp-action="DeleteActor">Delete</a>
                     </td>
                 </tr>
             }
             </tbody>
         </table>
-        <div class="offset-md-2"></div>
     </div>
 </div>
 
-
-<div class="row mb-3">
-    <div class="offset-md-3"></div>
-    <div class="col-md-4">
+<div class="row">
+    <div class="col-md-12">
         <div class="pagination">
             @Html.PagingButtons(Model.PagingInfo)
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="~/js/softDeleter.js"></script>
 <script src="~/js/actors-index.js"></script>
 
+@* ReSharper disable once Razor.SectionNotResolved *@
+
 @section Styles {
-    <link href="~/css/actor/actors-actors.css" rel="stylesheet"/>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 }

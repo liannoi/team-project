@@ -2,8 +2,14 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <h1>Homepage</h1>
+<div class="row mt-3 mb-4">
+    <div class="col-sm-12">
+        <h1 class="text-center font-weight-light message-welcome">Welcome</h1>
     </div>
 </div>
+
+@* ReSharper disable once Razor.SectionNotResolved *@
+
+@section Styles {
+    <link href="~/css/home/home-index.css" rel="stylesheet"/>
+}
